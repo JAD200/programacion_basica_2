@@ -7,6 +7,22 @@
             function random(min, max) {
                 return Math.floor(Math.random() * (max - min + 1) + min);
             }
+
+            function choice(choice) {
+                let result = '';
+                if (choice == 1) {
+                    result = 'Piedra 🥌';
+                } else if (choice == 2) {
+                    result = 'Papel 📰';
+                } else if (choice == 3) {
+                    result = 'Tijeras ✂';
+                } else {
+                    result = 'MAL ELEGIDO';
+                    choice == 0
+                }
+                return result
+            }
+
             // 1 = piedra, 2 = papel, 3 = tijera
             let jugador = 0;
             let pc = random(1, 3);
@@ -14,25 +30,15 @@
                 'Elige: 1 para piedra, 2 para papel y 3 para tijera'
             );
 
-            function returnChoices(selector) {
-                if (selector == 1) {
-                    return '🥌';
-                } else if (selector == 2) {
-                    return '📰';
-                } else if (selector == 3) {
-                    return '✂';
-                } else {
-                    return 'la nada misma';
-                }
-            }
-
-            alert('Tu elegiste ' + returnChoices(jugador));
-            alert('EL PC eligió ' + returnChoices(pc));
+            alert('PC elige: ' + choice(pc))
+            alert('Tu eliges: ' + choice(jugador))
 
             // COMBAT
             if (pc == jugador) {
                 alert('EMPATE');
-            } else if (jugador - pc == 1 || jugador - pc == -2) {
+            } else if (jugador == 0){
+                alert('PERDISTE');
+            } else if ((jugador - pc) == 1 || (jugador - pc) == -2) {
                 alert('GANASTE');
             } else {
                 alert('PERDISTE');
