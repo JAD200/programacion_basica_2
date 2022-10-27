@@ -9,27 +9,26 @@
             }
             // 1 = piedra, 2 = papel, 3 = tijera
             let jugador = 0;
-            let pc = random(1, 3)
+            let pc = random(1, 3);
             jugador = prompt(
                 'Elige: 1 para piedra, 2 para papel y 3 para tijera'
             );
-            if (jugador == 1) {
-                alert('Elegiste 🥌');
-            } else if (jugador == 2) {
-                alert('Elegiste 📰');
-            } else if (jugador == 3) {
-                alert('Elegiste ✂');
-            } else {
-                alert('Elegiste Perder');
+
+            function returnChoices(selector) {
+                if (selector == 1) {
+                    return '🥌';
+                } else if (selector == 2) {
+                    return '📰';
+                } else if (selector == 3) {
+                    return '✂';
+                } else {
+                    return 'la nada misma';
+                }
             }
-            // Selection PC
-            if (pc == 1) {
-                alert('PC elige 🥌');
-            } else if (pc == 2) {
-                alert('PC elige 📰');
-            } else if (pc == 3) {
-                alert('PC elige  ✂');
-            }
+
+            alert('Tu elegiste ' + returnChoices(jugador));
+            alert('EL PC eligió ' + returnChoices(pc));
+
             // COMBAT
             if (pc == jugador) {
                 alert('EMPATE');
