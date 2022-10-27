@@ -30,12 +30,8 @@
             // COMBAT
             if (pc == jugador) {
                 alert('EMPATE')
-            } else if (jugador == 1 && pc == 3){
-                alert('GANASTE')
-            } else if (jugador == 2 && pc == 1){
-                alert('GANASTE')
-            } else if (jugador == 3 && pc == 2){
-                alert('GANASTE')
+            } else if ((jugador - pc) == 1 || (jugador - pc) == -2) {
+                alert("GANASTE")
             } else {
                 alert('PERDISTE')
             }
