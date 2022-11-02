@@ -1,6 +1,15 @@
+let playerAttack;
+
 function beginGame() {
-    let buttonPlayerMascot = document.getElementById('boton-mascota');
-    buttonPlayerMascot.addEventListener('click', selectPlayerPet);
+    let playerMascotButton = document.getElementById('boton-mascota');
+    playerMascotButton.addEventListener('click', selectPlayerPet);
+
+    let fireButton = document.getElementById('boton-fuego');
+    fireButton.addEventListener('click', fireAttack);
+    let waterButton = document.getElementById('boton-agua');
+    waterButton.addEventListener('click', waterAttack);
+    let groundButton = document.getElementById('boton-tierra');
+    groundButton.addEventListener('click', groundAttack);
 }
 
 function selectPlayerPet() {
@@ -8,7 +17,7 @@ function selectPlayerPet() {
     let inputCapipepo = document.getElementById('capipepo');
     let inputRatigueya = document.getElementById('ratigueya');
     let spanPlayerPet = document.getElementById('mascota-jugador');
-    beginEnemySelection = true
+    beginEnemySelection = true;
 
     if (inputHipodoge.checked) {
         spanPlayerPet.innerHTML = 'Hipodoge';
@@ -18,9 +27,11 @@ function selectPlayerPet() {
         spanPlayerPet.innerHTML = 'Ratigueya';
     } else {
         alert('Selecciona una mascota, por favor');
-        beginEnemySelection = false
+        beginEnemySelection = false;
     }
-    if (beginEnemySelection == true) {selectEnemyPet();}
+    if (beginEnemySelection == true) {
+        selectEnemyPet();
+    }
 }
 
 function selectEnemyPet() {
@@ -34,6 +45,21 @@ function selectEnemyPet() {
     } else {
         spanEnemyPet.innerHTML = 'Ratigueya';
     }
+}
+
+function fireAttack() {
+    playerAttack = 'FUEGO'
+    alert(playerAttack)
+}
+
+function waterAttack() {
+    playerAttack = 'AGUA'
+    alert(playerAttack)
+}
+
+function groundAttack() {
+    playerAttack = 'TIERRA'
+    alert(playerAttack)
 }
 
 function random(min, max) {
