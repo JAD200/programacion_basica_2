@@ -7,17 +7,14 @@ function selectPlayerMascot() {
     let inputHipodoge = document.getElementById('hipodoge');
     let inputCapipepo = document.getElementById('capipepo');
     let inputRatigueya = document.getElementById('ratigueya');
-
-    function selectionMessage(mokepon) {
-        alert('Seleccionaste a ' + mokepon);
-    }
+    let spanMascotaJugador = document.getElementById('mascota-jugador');
 
     if (inputHipodoge.checked) {
-        selectionMessage('Hipodoge');
+        spanMascotaJugador.innerHTML = 'Hipodoge';
     } else if (inputCapipepo.checked) {
-        selectionMessage('Capipepo');
+        spanMascotaJugador.innerHTML = 'Capipepo';
     } else if (inputRatigueya.checked) {
-        selectionMessage('Ratigueya');
+        spanMascotaJugador.innerHTML = 'Ratigueya';
     } else {
         alert('Selecciona una mascota, por favor')
     }
