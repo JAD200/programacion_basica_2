@@ -1,4 +1,5 @@
 let playerAttack;
+let enemyAttack;
 
 function beginGame() {
     let playerMascotButton = document.getElementById('boton-mascota');
@@ -35,12 +36,12 @@ function selectPlayerPet() {
 }
 
 function selectEnemyPet() {
-    let randomAttack = random(1, 3);
+    let randomPet = random(1, 3);
     let spanEnemyPet = document.getElementById('mascota-enemiga');
 
-    if (randomAttack == 1) {
+    if (randomPet == 1) {
         spanEnemyPet.innerHTML = 'Hipodoge';
-    } else if (randomAttack == 2) {
+    } else if (randomPet == 2) {
         spanEnemyPet.innerHTML = 'Capipepo';
     } else {
         spanEnemyPet.innerHTML = 'Ratigueya';
@@ -48,18 +49,30 @@ function selectEnemyPet() {
 }
 
 function fireAttack() {
-    playerAttack = 'FUEGO'
-    alert(playerAttack)
+    playerAttack = 'FUEGO';
+    selectEnemyAttack();
 }
 
 function waterAttack() {
-    playerAttack = 'AGUA'
-    alert(playerAttack)
+    playerAttack = 'AGUA';
+    selectEnemyAttack();
 }
 
 function groundAttack() {
-    playerAttack = 'TIERRA'
-    alert(playerAttack)
+    playerAttack = 'TIERRA';
+    selectEnemyAttack();
+}
+
+function selectEnemyAttack() {
+    let randomAttackType = random(1, 3);
+
+    if (randomAttackType == 1) {
+        enemyAttack = 'FUEGO';
+    } else if (randomAttackType == 2) {
+        enemyAttack = 'AGUA';
+    } else {
+        enemyAttack = 'TIERRA';
+    }
 }
 
 function random(min, max) {
