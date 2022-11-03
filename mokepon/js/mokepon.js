@@ -72,18 +72,38 @@ function selectEnemyAttack() {
         enemyAttack = 'AGUA';
     } else {
         enemyAttack = 'TIERRA';
-    } 
+    }
 
-    createMessage()
+    combat();
 }
 
-function createMessage() {
-    let sectionMessages = document.getElementById('mensajes')
+function combat() {
+    if (enemyAttack == playerAttack) {
+        createMessage('EMPATE');
+    } else if (playerAttack == 'FUEGO' && enemyAttack == 'TIERRA') {
+        createMessage('🎉GANASTE🎉');
+    } else if (playerAttack == 'AGUA' && enemyAttack == 'FUEGO') {
+        createMessage('🎉GANASTE🎉');
+    } else if (playerAttack == 'TIERRA' && enemyAttack == 'AGUA') {
+        createMessage('🎉GANASTE🎉');
+    } else {
+        createMessage('😢PERDISTE😢');
+    }
+}
 
-    let battleParagraph = document.createElement('p')
-    battleParagraph.innerHTML = 'Tu mascota ataco con ' + playerAttack + ', la mascota del enemigo ataco con ' +  enemyAttack + ' - PENDIENTE'
+function createMessage(combatResult) {
+    let sectionMessages = document.getElementById('mensajes');
 
-    sectionMessages.appendChild(battleParagraph)
+    let battleParagraph = document.createElement('p');
+    battleParagraph.innerHTML =
+        'Tu mascota ataco con ' +
+        playerAttack +
+        ', la mascota del enemigo ataco con ' +
+        enemyAttack +
+        ' - ' +
+        combatResult;
+
+    sectionMessages.appendChild(battleParagraph);
 }
 
 function random(min, max) {
