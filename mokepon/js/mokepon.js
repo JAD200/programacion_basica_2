@@ -1,19 +1,23 @@
 let playerAttack;
 let enemyAttack;
-let playerLives = 3
-let enemyLives = 3
+let playerLives = 3;
+let enemyLives = 3;
 let allowCombat = false;
 
 function beginGame() {
     let playerMascotButton = document.getElementById('boton-mascota');
     playerMascotButton.addEventListener('click', selectPlayerPet);
 
+    // Attack buttons
     let fireButton = document.getElementById('boton-fuego');
     fireButton.addEventListener('click', fireAttack);
     let waterButton = document.getElementById('boton-agua');
     waterButton.addEventListener('click', waterAttack);
     let groundButton = document.getElementById('boton-tierra');
     groundButton.addEventListener('click', groundAttack);
+
+    let resetGameButton = document.getElementById('boton-reset');
+    resetGameButton.addEventListener('click', resetGame);
 }
 
 function selectPlayerPet() {
@@ -21,6 +25,7 @@ function selectPlayerPet() {
     let inputCapipepo = document.getElementById('capipepo');
     let inputRatigueya = document.getElementById('ratigueya');
     let spanPlayerPet = document.getElementById('mascota-jugador');
+    let playerMascotButton = document.getElementById('boton-mascota');
 
     if (inputHipodoge.checked) {
         spanPlayerPet.innerHTML = 'Hipodoge';
@@ -36,6 +41,7 @@ function selectPlayerPet() {
     }
     if (allowCombat === true) {
         selectEnemyPet();
+        playerMascotButton.disabled = true
     }
 }
 
@@ -82,8 +88,8 @@ function selectEnemyAttack() {
 }
 
 function combat() {
-    let spanPlayerLives = document.getElementById('vidas-mascota-jugador')
-    let spanEnemyLives = document.getElementById('vidas-mascota-enemiga')
+    let spanPlayerLives = document.getElementById('vidas-mascota-jugador');
+    let spanEnemyLives = document.getElementById('vidas-mascota-enemiga');
 
     //* No pet has been selected
     if (allowCombat == false) {
@@ -95,31 +101,30 @@ function combat() {
         createMessage('EMPATE');
     } else if (playerAttack == 'FUEGO' && enemyAttack == 'TIERRA') {
         createMessage('🎉GANASTE🎉');
-        enemyLives--
-        spanEnemyLives.innerHTML = enemyLives
+        enemyLives--;
+        spanEnemyLives.innerHTML = enemyLives;
     } else if (playerAttack == 'AGUA' && enemyAttack == 'FUEGO') {
         createMessage('🎉GANASTE🎉');
-        enemyLives--
-        spanEnemyLives.innerHTML = enemyLives
+        enemyLives--;
+        spanEnemyLives.innerHTML = enemyLives;
     } else if (playerAttack == 'TIERRA' && enemyAttack == 'AGUA') {
         createMessage('🎉GANASTE🎉');
-        enemyLives--
-        spanEnemyLives.innerHTML = enemyLives
+        enemyLives--;
+        spanEnemyLives.innerHTML = enemyLives;
     } else {
         createMessage('😢PERDISTE😢');
-        playerLives--
-        spanPlayerLives.innerHTML = playerLives
+        playerLives--;
+        spanPlayerLives.innerHTML = playerLives;
     }
 
-    checkLives()
-
+    checkLives();
 }
 
 function checkLives() {
     if (enemyLives == 0) {
-        createFinalMessage('FELICITACIONES, GANASTE 🥳')
+        createFinalMessage('FELICITACIONES, GANASTE 🥳');
     } else if (playerLives == 0) {
-        createFinalMessage('Lo siento, perdiste 😔')
+        createFinalMessage('Lo siento, perdiste 😔');
     }
 }
 
@@ -142,9 +147,20 @@ function createFinalMessage(finalResult) {
     let sectionMessages = document.getElementById('mensajes');
 
     let battleResultParagraph = document.createElement('p');
-    battleResultParagraph.innerHTML = finalResult
+    battleResultParagraph.innerHTML = finalResult;
 
     sectionMessages.appendChild(battleResultParagraph);
+
+    let fireButton = document.getElementById('boton-fuego');
+    fireButton.disabled = true
+    let waterButton = document.getElementById('boton-agua');
+    waterButton.disabled = true
+    let groundButton = document.getElementById('boton-tierra');
+    groundButton.disabled = true
+}
+
+function resetGame() {
+    location.reload();
 }
 
 function random(min, max) {
