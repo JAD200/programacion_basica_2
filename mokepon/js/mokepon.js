@@ -2,9 +2,14 @@ let playerAttack;
 let enemyAttack;
 let playerLives = 3;
 let enemyLives = 3;
-let allowCombat = false;
 
 function beginGame() {
+    let selectAttackSection = document.getElementById('seleccionar-ataque');
+    selectAttackSection.style.display = 'none';
+
+    let resetSection = document.getElementById('reiniciar')
+    resetSection.style.display = 'none';
+
     let playerMascotButton = document.getElementById('boton-mascota');
     playerMascotButton.addEventListener('click', selectPlayerPet);
 
@@ -21,27 +26,28 @@ function beginGame() {
 }
 
 function selectPlayerPet() {
+    let selectAttackSection = document.getElementById('seleccionar-ataque');
+    let selectPetSection = document.getElementById('seleccionar-mascota');
+
     let inputHipodoge = document.getElementById('hipodoge');
     let inputCapipepo = document.getElementById('capipepo');
     let inputRatigueya = document.getElementById('ratigueya');
     let spanPlayerPet = document.getElementById('mascota-jugador');
-    let playerMascotButton = document.getElementById('boton-mascota');
 
     if (inputHipodoge.checked) {
         spanPlayerPet.innerHTML = 'Hipodoge';
-        allowCombat = true;
+        selectAttackSection.style.display = 'block';
     } else if (inputCapipepo.checked) {
         spanPlayerPet.innerHTML = 'Capipepo';
-        allowCombat = true;
+        selectAttackSection.style.display = 'block';
     } else if (inputRatigueya.checked) {
         spanPlayerPet.innerHTML = 'Ratigueya';
-        allowCombat = true;
+        selectAttackSection.style.display = 'block';
     } else {
         alert('Selecciona una mascota, por favor');
     }
-    if (allowCombat === true) {
-        selectEnemyPet();
-        playerMascotButton.disabled = true
+    if (selectAttackSection.style.display == 'block') {
+        selectPetSection.style.display = 'none';
     }
 }
 
@@ -91,12 +97,6 @@ function combat() {
     let spanPlayerLives = document.getElementById('vidas-mascota-jugador');
     let spanEnemyLives = document.getElementById('vidas-mascota-enemiga');
 
-    //* No pet has been selected
-    if (allowCombat == false) {
-        alert('Selecciona una mascota, por favor');
-        return null;
-    }
-    // A pet has been selected
     if (enemyAttack == playerAttack) {
         createMessage('EMPATE');
     } else if (playerAttack == 'FUEGO' && enemyAttack == 'TIERRA') {
@@ -129,7 +129,7 @@ function checkLives() {
 }
 
 function createMessage(combatResult) {
-    let sectionMessages = document.getElementById('mensajes');
+    let messagesSection = document.getElementById('mensajes');
 
     let battleParagraph = document.createElement('p');
     battleParagraph.innerHTML =
@@ -140,23 +140,26 @@ function createMessage(combatResult) {
         ' - ' +
         combatResult;
 
-    sectionMessages.appendChild(battleParagraph);
+    messagesSection.appendChild(battleParagraph);
 }
 
 function createFinalMessage(finalResult) {
-    let sectionMessages = document.getElementById('mensajes');
+    let resetSection = document.getElementById('reiniciar')
+    resetSection.style.display = 'block';
+
+    let messagesSection = document.getElementById('mensajes');
 
     let battleResultParagraph = document.createElement('p');
     battleResultParagraph.innerHTML = finalResult;
 
-    sectionMessages.appendChild(battleResultParagraph);
+    messagesSection.appendChild(battleResultParagraph);
 
     let fireButton = document.getElementById('boton-fuego');
-    fireButton.disabled = true
+    fireButton.disabled = true;
     let waterButton = document.getElementById('boton-agua');
-    waterButton.disabled = true
+    waterButton.disabled = true;
     let groundButton = document.getElementById('boton-tierra');
-    groundButton.disabled = true
+    groundButton.disabled = true;
 }
 
 function resetGame() {
