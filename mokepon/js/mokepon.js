@@ -72,7 +72,18 @@ function selectEnemyAttack() {
         enemyAttack = 'AGUA';
     } else {
         enemyAttack = 'TIERRA';
-    }
+    } 
+
+    createMessage()
+}
+
+function createMessage() {
+    let sectionMessages = document.getElementById('mensajes')
+
+    let battleParagraph = document.createElement('p')
+    battleParagraph.innerHTML = 'Tu mascota ataco con ' + playerAttack + ', la mascota del enemigo ataco con ' +  enemyAttack + ' - PENDIENTE'
+
+    sectionMessages.appendChild(battleParagraph)
 }
 
 function random(min, max) {
