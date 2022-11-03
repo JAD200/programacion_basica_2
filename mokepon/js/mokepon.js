@@ -1,5 +1,8 @@
 let playerAttack;
 let enemyAttack;
+let playerLives = 3
+let enemyLives = 3
+let allowCombat = false;
 
 function beginGame() {
     let playerMascotButton = document.getElementById('boton-mascota');
@@ -18,19 +21,20 @@ function selectPlayerPet() {
     let inputCapipepo = document.getElementById('capipepo');
     let inputRatigueya = document.getElementById('ratigueya');
     let spanPlayerPet = document.getElementById('mascota-jugador');
-    beginEnemySelection = true;
 
     if (inputHipodoge.checked) {
         spanPlayerPet.innerHTML = 'Hipodoge';
+        allowCombat = true;
     } else if (inputCapipepo.checked) {
         spanPlayerPet.innerHTML = 'Capipepo';
+        allowCombat = true;
     } else if (inputRatigueya.checked) {
         spanPlayerPet.innerHTML = 'Ratigueya';
+        allowCombat = true;
     } else {
         alert('Selecciona una mascota, por favor');
-        beginEnemySelection = false;
     }
-    if (beginEnemySelection == true) {
+    if (allowCombat === true) {
         selectEnemyPet();
     }
 }
@@ -78,16 +82,33 @@ function selectEnemyAttack() {
 }
 
 function combat() {
+    let spanPlayerLives = document.getElementById('vidas-mascota-jugador')
+    let spanEnemyLives = document.getElementById('vidas-mascota-enemiga')
+
+    //* No pet has been selected
+    if (allowCombat == false) {
+        alert('Selecciona una mascota, por favor');
+        return null;
+    }
+    // A pet has been selected
     if (enemyAttack == playerAttack) {
         createMessage('EMPATE');
     } else if (playerAttack == 'FUEGO' && enemyAttack == 'TIERRA') {
         createMessage('🎉GANASTE🎉');
+        enemyLives--
+        spanEnemyLives.innerHTML = enemyLives
     } else if (playerAttack == 'AGUA' && enemyAttack == 'FUEGO') {
         createMessage('🎉GANASTE🎉');
+        enemyLives--
+        spanEnemyLives.innerHTML = enemyLives
     } else if (playerAttack == 'TIERRA' && enemyAttack == 'AGUA') {
         createMessage('🎉GANASTE🎉');
+        enemyLives--
+        spanEnemyLives.innerHTML = enemyLives
     } else {
         createMessage('😢PERDISTE😢');
+        playerLives--
+        spanPlayerLives.innerHTML = playerLives
     }
 }
 
