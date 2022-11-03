@@ -110,6 +110,17 @@ function combat() {
         playerLives--
         spanPlayerLives.innerHTML = playerLives
     }
+
+    checkLives()
+
+}
+
+function checkLives() {
+    if (enemyLives == 0) {
+        createFinalMessage('FELICITACIONES, GANASTE 🥳')
+    } else if (playerLives == 0) {
+        createFinalMessage('Lo siento, perdiste 😔')
+    }
 }
 
 function createMessage(combatResult) {
@@ -125,6 +136,15 @@ function createMessage(combatResult) {
         combatResult;
 
     sectionMessages.appendChild(battleParagraph);
+}
+
+function createFinalMessage(finalResult) {
+    let sectionMessages = document.getElementById('mensajes');
+
+    let battleResultParagraph = document.createElement('p');
+    battleResultParagraph.innerHTML = finalResult
+
+    sectionMessages.appendChild(battleResultParagraph);
 }
 
 function random(min, max) {
