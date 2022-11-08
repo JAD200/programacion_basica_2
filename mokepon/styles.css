@@ -5,20 +5,8 @@
     width: 310px;
 }
 
-label {
-    background-color: tomato;
-    height: 50px;
-    width: 310px;
-}
-
-input {
-    background-color: aqua;
-    height: 50px;
-    width: 310px;
-}
-
-button {
-    background-color: blueviolet;
-    height: 50px;
-    width: 310px;
+#seleccionar-mascota {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
