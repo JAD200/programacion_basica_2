@@ -1,8 +1,8 @@
-.titulo {
-    background-color: teal;
-    color: #40390F;
-    height: 50px;
-    width: 310px;
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+body {
+    font-family: 'Fredoka One', cursive;
+    background-color: #3B3486;
 }
 
 #seleccionar-mascota {
@@ -11,8 +11,23 @@
     align-items: center;
 }
 
+.titulo {
+    color: #FCFDF2;
+    font-size: 32px;
+}
+
+.subtitulo {
+    color: #FCFDF2;
+    font-size: 20px;
+}
+
+.tarjetas {
+    display: flex;
+    gap: 10px;
+}
+
 .tarjeta-de-mokepon {
-    background: #8275D9;
+    background: #8854ec;
     box-sizing: border-box;
     border: 1px solid #40390F;
     height: 100px;
@@ -22,10 +37,9 @@
 }
 
 #boton-mascota {
-    background-color: #483D8B;
+    background-color: #FFE9B1;
     border: 1px dashed #40390F;
     box-sizing: border-box;
-    color: white;
     height: 60px;
     margin: 10px;
     padding: 10px;
