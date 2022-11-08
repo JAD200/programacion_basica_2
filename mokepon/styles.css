@@ -1,6 +1,6 @@
 .titulo {
     background-color: teal;
-    color: #c48e18;
+    color: #40390F;
     height: 50px;
     width: 310px;
 }
@@ -9,4 +9,29 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.tarjeta-de-mokepon {
+    background: #8275D9;
+    box-sizing: border-box;
+    border: 1px solid #40390F;
+    height: 100px;
+    margin: 10px;
+    padding: 10px;
+    width: 100px;
+}
+
+#boton-mascota {
+    background-color: #483D8B;
+    border: 1px dashed #40390F;
+    box-sizing: border-box;
+    color: white;
+    height: 60px;
+    margin: 10px;
+    padding: 10px;
+    width: 150px;
+}
+
+input {
+    display: none;
 }
