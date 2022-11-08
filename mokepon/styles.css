@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
 body {
     font-family: 'Fredoka One', cursive;
-    background-color: #3B3486;
+    background-color: #3b3486;
 }
 
 #seleccionar-mascota {
@@ -12,12 +13,12 @@ body {
 }
 
 .titulo {
-    color: #FCFDF2;
+    color: #fcfdf2;
     font-size: 32px;
 }
 
 .subtitulo {
-    color: #FCFDF2;
+    color: #fcfdf2;
     font-size: 20px;
 }
 
@@ -28,21 +29,31 @@ body {
 
 .tarjeta-de-mokepon {
     background: #8854ec;
+    border-radius: 20px;
+    border: 1px solid #fcfdf2;
     box-sizing: border-box;
-    border: 1px solid #40390F;
+    color: #fcfdf2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100px;
     margin: 10px;
     padding: 10px;
-    width: 100px;
+    width: 185px;
+}
+
+.tarjeta-de-mokepon img {
+    width: 80px;
 }
 
 #boton-mascota {
-    background-color: #FFE9B1;
-    border: 1px dashed #40390F;
-    box-sizing: border-box;
-    height: 60px;
-    margin: 10px;
-    padding: 10px;
+    background: transparent;
+    border-radius: 20px;
+    border: 1px solid #fcfdf2;
+    color: #fcfdf2;
+    font-family: 'Poppins', sans-serif;
+    height: 40px;
+    margin-top: 30px;
     width: 150px;
 }
 
