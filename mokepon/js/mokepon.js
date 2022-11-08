@@ -26,8 +26,11 @@ function beginGame() {
 }
 
 function selectPlayerPet() {
-    let selectAttackSection = document.getElementById('seleccionar-ataque');
     let selectPetSection = document.getElementById('seleccionar-mascota');
+    selectPetSection.style.display = 'none';
+
+    let selectAttackSection = document.getElementById('seleccionar-ataque');
+    selectAttackSection.style.display = 'flex';
 
     let inputHipodoge = document.getElementById('hipodoge');
     let inputCapipepo = document.getElementById('capipepo');
@@ -36,19 +39,15 @@ function selectPlayerPet() {
 
     if (inputHipodoge.checked) {
         spanPlayerPet.innerHTML = 'Hipodoge';
-        selectAttackSection.style.display = 'block';
     } else if (inputCapipepo.checked) {
         spanPlayerPet.innerHTML = 'Capipepo';
-        selectAttackSection.style.display = 'block';
     } else if (inputRatigueya.checked) {
         spanPlayerPet.innerHTML = 'Ratigueya';
-        selectAttackSection.style.display = 'block';
     } else {
         alert('Selecciona una mascota, por favor');
     }
-    if (selectAttackSection.style.display == 'block') {
-        selectPetSection.style.display = 'none';
-    }
+
+    selectEnemyPet()
 }
 
 function selectEnemyPet() {

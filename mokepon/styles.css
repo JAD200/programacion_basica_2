@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
 body {
-    font-family: 'Fredoka One', cursive;
+    font-family: 'Poppins', sans-serif;
     background-color: #3b3486;
 }
 
@@ -14,6 +14,7 @@ body {
 
 .titulo {
     color: #fcfdf2;
+    font-family: 'Fredoka One', cursive;
     font-size: 32px;
 }
 
@@ -59,4 +60,21 @@ body {
 
 input {
     display: none;
+}
+
+#seleccionar-ataque {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.boton-ataque {
+    background-color: #8854ec;
+    border-radius: 20px;
+    border-color: transparent;
+    box-sizing: border-box;
+    color: #fcfdf2;
+    font-family: 'Poppins', sans-serif;
+    padding: 10px;
+    width: 100px;
 }
