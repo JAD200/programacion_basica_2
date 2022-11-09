@@ -97,3 +97,23 @@ input {
     color: #8854ec;
     
 }
+
+.combate {
+    display: grid;
+    grid-template-columns: 100px 100px;
+    column-gap: 75px;
+    color: #fff;
+    justify-items: center;
+}
+
+.combate-jugador {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.combate-enemigo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

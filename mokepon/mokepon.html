@@ -52,7 +52,9 @@
             <div>
                 <button id="boton-fuego" class="boton-ataque">Fuego 🔥</button>
                 <button id="boton-agua" class="boton-ataque">Agua 💧</button>
-                <button id="boton-tierra" class="boton-ataque">Tierra 🌱</button>
+                <button id="boton-tierra" class="boton-ataque">
+                    Tierra 🌱
+                </button>
             </div>
 
             <div id="mensajes">
@@ -63,17 +65,17 @@
                 </section>
             </div>
 
-            <div>
-                <div id="ataques-del-jugador"></div>
-                <div id="ataques-del-enemigo"></div>
-                <p>
-                    Tu mascota <span id="mascota-jugador"></span> tiene
-                    <span id="vidas-mascota-jugador">3</span> vidas
-                </p>
-                <p>
-                    La mascota <span id="mascota-enemiga"></span> del enemigo
-                    tiene <span id="vidas-mascota-enemiga">3</span> vidas
-                </p>
+            <div class="combate">
+                <div class="combate-jugador">
+                    <p id="vidas-mascota-jugador">3</p> 
+                    <p id="mascota-jugador"></p> 
+                    <div id="ataques-del-jugador"></div>
+                </div>
+                <div class="combate-enemigo">
+                    <p id="vidas-mascota-enemiga">3</p> 
+                    <p id="mascota-enemiga"></p> 
+                    <div id="ataques-del-enemigo"></div>
+                </div>
             </div>
         </section>
     </body>
