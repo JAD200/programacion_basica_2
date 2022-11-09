@@ -7,7 +7,7 @@ function beginGame() {
     let selectAttackSection = document.getElementById('seleccionar-ataque');
     selectAttackSection.style.display = 'none';
 
-    let resetSection = document.getElementById('reiniciar')
+    let resetSection = document.getElementById('reiniciar');
     resetSection.style.display = 'none';
 
     let playerMascotButton = document.getElementById('boton-mascota');
@@ -47,7 +47,7 @@ function selectPlayerPet() {
         alert('Selecciona una mascota, por favor');
     }
 
-    selectEnemyPet()
+    selectEnemyPet();
 }
 
 function selectEnemyPet() {
@@ -128,30 +128,28 @@ function checkLives() {
 }
 
 function createMessage(combatResult) {
-    let messagesSection = document.getElementById('mensajes');
+    let messagesSection = document.getElementById('resultado');
+    let playerAttackMessage = document.getElementById('ataques-del-jugador');
+    let enemyAttackMessage = document.getElementById('ataques-del-enemigo');
 
-    let battleParagraph = document.createElement('p');
-    battleParagraph.innerHTML =
-        'Tu mascota ataco con ' +
-        playerAttack +
-        ', la mascota del enemigo ataco con ' +
-        enemyAttack +
-        ' - ' +
-        combatResult;
+    let newPlayerAttack = document.createElement('p');
+    let newEnemyAttack = document.createElement('p');
 
-    messagesSection.appendChild(battleParagraph);
+    messagesSection.innerHTML = combatResult;
+    newPlayerAttack.innerHTML = playerAttack;
+    newEnemyAttack.innerHTML = enemyAttack;
+
+    playerAttackMessage.appendChild(newPlayerAttack);
+    enemyAttackMessage.appendChild(newEnemyAttack);
 }
 
 function createFinalMessage(finalResult) {
-    let resetSection = document.getElementById('reiniciar')
+    let resetSection = document.getElementById('reiniciar');
     resetSection.style.display = 'block';
 
-    let messagesSection = document.getElementById('mensajes');
+    let messagesSection = document.getElementById('resultado');
 
-    let battleResultParagraph = document.createElement('p');
-    battleResultParagraph.innerHTML = finalResult;
-
-    messagesSection.appendChild(battleResultParagraph);
+    messagesSection.innerHTML = finalResult;
 
     let fireButton = document.getElementById('boton-fuego');
     fireButton.disabled = true;
