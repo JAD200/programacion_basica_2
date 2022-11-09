@@ -33,7 +33,7 @@ body {
     border-radius: 20px;
     border: 1px solid #fcfdf2;
     box-sizing: border-box;
-    color: #fcfdf2;
+    color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -51,7 +51,7 @@ body {
     background: transparent;
     border-radius: 20px;
     border: 1px solid #fcfdf2;
-    color: #fcfdf2;
+    color: #fff;
     font-family: 'Poppins', sans-serif;
     height: 40px;
     margin-top: 30px;
@@ -73,8 +73,8 @@ input {
     border-radius: 20px;
     border-color: transparent;
     box-sizing: border-box;
-    color: #fcfdf2;
+    color: #fff;
     font-family: 'Poppins', sans-serif;
     padding: 10px;
-    width: 100px;
+    width: 180px;
 }
