@@ -63,6 +63,11 @@ input {
     display: none;
 }
 
+input:checked + label{
+    background-color: #FFE9B1;
+    color: #000;
+}
+
 #seleccionar-ataque {
     display: flex;
     flex-direction: column;
@@ -86,6 +91,7 @@ input {
     align-items: center ;
     background: #FFE9B1;
     border-radius: 20px;
+    font-size: 20px;
     margin-top: 20px;
     padding: 20px;
     width: 280px;
