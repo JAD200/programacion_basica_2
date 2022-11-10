@@ -28,9 +28,7 @@ function beginGame() {
 function selectPlayerPet() {
     let selectPetSection = document.getElementById('seleccionar-mascota');
     selectPetSection.style.display = 'none';
-
     let selectAttackSection = document.getElementById('seleccionar-ataque');
-    selectAttackSection.style.display = 'flex';
 
     let inputHipodoge = document.getElementById('hipodoge');
     let inputCapipepo = document.getElementById('capipepo');
@@ -45,8 +43,10 @@ function selectPlayerPet() {
         spanPlayerPet.innerHTML = 'Ratigueya';
     } else {
         alert('Selecciona una mascota, por favor');
+        return selectPetSection.style.display = 'flex'
     }
 
+    selectAttackSection.style.display = 'flex';
     selectEnemyPet();
 }
 
