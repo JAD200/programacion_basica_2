@@ -24,6 +24,7 @@ const messagesSection = document.getElementById('resultado');
 const playerAttackMessage = document.getElementById('ataques-del-jugador');
 const enemyAttackMessage = document.getElementById('ataques-del-enemigo');
 
+let mokepons = [];
 let playerAttack;
 let enemyAttack;
 let playerLives = 3;
@@ -43,6 +44,8 @@ let hipodoge = new Mokepon('Hipodoge', './assets/mokepon-Hipodoge.png', 5);
 let capipepo = new Mokepon('Capipepo', './assets/mokepon-Capipepo.png', 5);
 
 let ratigueya = new Mokepon('Ratigueya', './assets/mokepon-Ratigueya.png', 4);
+
+mokepons.push(hipodoge, capipepo, ratigueya);
 
 function beginGame() {
     selectAttackSection.style.display = 'none';
