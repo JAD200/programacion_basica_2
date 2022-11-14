@@ -29,6 +29,21 @@ let enemyAttack;
 let playerLives = 3;
 let enemyLives = 3;
 
+// Mokepons
+class Mokepon {
+    constructor(name, picture, life) {
+        this.name = name;
+        this.picture = picture;
+        this.life = life;
+    }
+}
+
+let hipodoge = new Mokepon('Hipodoge', './assets/mokepon-Hipodoge.png', 5);
+
+let capipepo = new Mokepon('Capipepo', './assets/mokepon-Capipepo.png', 5);
+
+let ratigueya = new Mokepon('Ratigueya', './assets/mokepon-Ratigueya.png', 4);
+
 function beginGame() {
     selectAttackSection.style.display = 'none';
     resetSection.style.display = 'none';
@@ -45,7 +60,6 @@ function beginGame() {
 function selectPlayerPet() {
     selectPetSection.style.display = 'none';
 
-
     if (inputHipodoge.checked) {
         spanPlayerPet.innerHTML = 'Hipodoge';
     } else if (inputCapipepo.checked) {
@@ -54,7 +68,7 @@ function selectPlayerPet() {
         spanPlayerPet.innerHTML = 'Ratigueya';
     } else {
         alert('Selecciona una mascota, por favor');
-        return selectPetSection.style.display = 'flex'
+        return (selectPetSection.style.display = 'flex');
     }
 
     selectAttackSection.style.display = 'flex';
