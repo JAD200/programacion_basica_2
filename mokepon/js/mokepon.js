@@ -22,20 +22,22 @@ const attacksContainer = document.getElementById('contenedor-ataques');
 
 let mokepons = [];
 // Attacks
-let playerAttack;
+let playerAttack = [];
 let enemyAttack;
 
 let mokeponsOption;
+let playerPet;
+let attackOptions;
 // Inputs
 let inputHipodoge;
 let inputCapipepo;
 let inputRatigueya;
+// Buttons
 let fireButton;
 let waterButton;
 let groundButton;
+let buttons = []
 
-let playerPet;
-let attackOptions;
 let playerLives = 3;
 let enemyLives = 3;
 
@@ -143,41 +145,42 @@ function extractAttacks(playerPet) {
 function showAttacks(attacks) {
     attacks.forEach((attack) => {
         attackOptions =  `
-        <button id=${attack.id} class="boton-ataque">${attack.attackName}</button>
+        <button id=${attack.id} class="boton-ataque BAtaque">${attack.attackName}</button>
         `
     attacksContainer.innerHTML += attackOptions
     });
 
-    // Select button the create them
     fireButton = document.getElementById('boton-fuego');
     waterButton = document.getElementById('boton-agua');
     groundButton = document.getElementById('boton-tierra');
+    buttons = document.querySelectorAll('.BAtaque')
+}
 
-    // Add an event ot the elements
-    fireButton.addEventListener('click', fireAttack);
-    waterButton.addEventListener('click', waterAttack);
-    groundButton.addEventListener('click', groundAttack);
+function attackSequence() {
+    buttons.forEach((button) => {
+        button.addEventListener('click', (e) => {
+            if (e.target.textContent === '🔥') {
+                playerAttack.push('FUEGO')
+                console.log(playerAttack);
+                button.style.background = '#FFE9B1';
+            }else if (e.target.textContent === '💧') {
+                playerAttack.push('AGUA')
+                console.log(playerAttack);
+                button.style.background = '#FFE9B1';
+            }else {
+                playerAttack.push('TIERRA')
+                console.log(playerAttack);
+                button.style.background = '#FFE9B1';
+            }
+        })
+    });
 }
 
 function selectEnemyPet() {
     let randomPet = random(0, mokepons.length -1);
 
-    spanEnemyPet.innerHTML = mokepons[randomPet].name
-}
-
-function fireAttack() {
-    playerAttack = 'FUEGO';
-    selectEnemyAttack();
-}
-
-function waterAttack() {
-    playerAttack = 'AGUA';
-    selectEnemyAttack();
-}
-
-function groundAttack() {
-    playerAttack = 'TIERRA';
-    selectEnemyAttack();
+    spanEnemyPet.innerHTML = mokepons[randomPet].name;
+    attackSequence();
 }
 
 function selectEnemyAttack() {
