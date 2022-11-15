@@ -36,6 +36,7 @@ class Mokepon {
         this.name = name;
         this.picture = picture;
         this.life = life;
+        this.attacks = [];
     }
 }
 
@@ -45,7 +46,29 @@ let capipepo = new Mokepon('Capipepo', './assets/mokepon-Capipepo.png', 5);
 
 let ratigueya = new Mokepon('Ratigueya', './assets/mokepon-Ratigueya.png', 4);
 
-mokepons.push(hipodoge, capipepo, ratigueya);
+hipodoge.attacks.push(
+    { attackName: '💧', id: 'boton-agua'},
+    { attackName: '💧', id: 'boton-agua'},
+    { attackName: '💧', id: 'boton-agua'},
+    { attackName: '🔥', id: 'boton-fuego'},
+    { attackName: '🌱', id: 'boton-tierra'}
+);
+
+capipepo.attacks.push(
+    { attackName: '🌱', id: 'boton-tierra'},
+    { attackName: '🌱', id: 'boton-tierra'},
+    { attackName: '🌱', id: 'boton-tierra'},
+    { attackName: '💧', id: 'boton-agua'},
+    { attackName: '🔥', id: 'boton-fuego'}
+);
+
+ratigueya.attacks.push(
+    { attackName: '🔥', id: 'boton-fuego'},
+    { attackName: '🔥', id: 'boton-fuego'},
+    { attackName: '🔥', id: 'boton-fuego'},
+    { attackName: '💧', id: 'boton-agua'},
+    { attackName: '🌱', id: 'boton-tierra'}
+);
 
 function beginGame() {
     selectAttackSection.style.display = 'none';
