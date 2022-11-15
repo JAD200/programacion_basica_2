@@ -110,11 +110,11 @@ function selectPlayerPet() {
     selectPetSection.style.display = 'none';
 
     if (inputHipodoge.checked) {
-        spanPlayerPet.innerHTML = 'Hipodoge';
+        spanPlayerPet.innerHTML = inputHipodoge.id;
     } else if (inputCapipepo.checked) {
-        spanPlayerPet.innerHTML = 'Capipepo';
+        spanPlayerPet.innerHTML = inputCapipepo.id;
     } else if (inputRatigueya.checked) {
-        spanPlayerPet.innerHTML = 'Ratigueya';
+        spanPlayerPet.innerHTML = inputRatigueya.id;
     } else {
         alert('Selecciona una mascota, por favor');
         return (selectPetSection.style.display = 'flex');
@@ -128,11 +128,11 @@ function selectEnemyPet() {
     let randomPet = random(1, 3);
 
     if (randomPet == 1) {
-        spanEnemyPet.innerHTML = 'Hipodoge';
+        spanEnemyPet.innerHTML = inputHipodoge.id;
     } else if (randomPet == 2) {
-        spanEnemyPet.innerHTML = 'Capipepo';
+        spanEnemyPet.innerHTML = inputCapipepo.id;
     } else {
-        spanEnemyPet.innerHTML = 'Ratigueya';
+        spanEnemyPet.innerHTML = inputRatigueya.id;
     }
 }
 
