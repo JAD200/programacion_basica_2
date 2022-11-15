@@ -125,15 +125,9 @@ function selectPlayerPet() {
 }
 
 function selectEnemyPet() {
-    let randomPet = random(1, 3);
+    let randomPet = random(0, mokepons.length -1);
 
-    if (randomPet == 1) {
-        spanEnemyPet.innerHTML = inputHipodoge.id;
-    } else if (randomPet == 2) {
-        spanEnemyPet.innerHTML = inputCapipepo.id;
-    } else {
-        spanEnemyPet.innerHTML = inputRatigueya.id;
-    }
+    spanEnemyPet.innerHTML = mokepons[randomPet].name
 }
 
 function fireAttack() {
