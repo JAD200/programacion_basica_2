@@ -36,7 +36,7 @@ let inputRatigueya;
 let fireButton;
 let waterButton;
 let groundButton;
-let buttons = []
+let buttons = [];
 
 let playerLives = 3;
 let enemyLives = 3;
@@ -88,7 +88,7 @@ function beginGame() {
     resetSection.style.display = 'none';
 
     mokepons.forEach((mokepon) => {
-        mokeponsOption =  `
+        mokeponsOption = `
         <input type="radio" name="mascota" id=${mokepon.name} />
         <label class="tarjeta-de-mokepon" for=${mokepon.name}>
             <p>${mokepon.name}</p>
@@ -97,13 +97,13 @@ function beginGame() {
                 alt="mokepon-${mokepon.name}"
             />
         </label>
-        `
-    cardsContainer.innerHTML += mokeponsOption
+        `;
+        cardsContainer.innerHTML += mokeponsOption;
 
-    inputHipodoge = document.getElementById('Hipodoge');
-    inputCapipepo = document.getElementById('Capipepo');
-    inputRatigueya = document.getElementById('Ratigueya');
-    })
+        inputHipodoge = document.getElementById('Hipodoge');
+        inputCapipepo = document.getElementById('Capipepo');
+        inputRatigueya = document.getElementById('Ratigueya');
+    });
 
     playerMascotButton.addEventListener('click', selectPlayerPet);
 
@@ -115,13 +115,13 @@ function selectPlayerPet() {
 
     if (inputHipodoge.checked) {
         spanPlayerPet.innerHTML = inputHipodoge.id;
-        playerPet = inputHipodoge.id
+        playerPet = inputHipodoge.id;
     } else if (inputCapipepo.checked) {
         spanPlayerPet.innerHTML = inputCapipepo.id;
-        playerPet = inputCapipepo.id
+        playerPet = inputCapipepo.id;
     } else if (inputRatigueya.checked) {
         spanPlayerPet.innerHTML = inputRatigueya.id;
-        playerPet = inputRatigueya.id
+        playerPet = inputRatigueya.id;
     } else {
         alert('Selecciona una mascota, por favor');
         return (selectPetSection.style.display = 'flex');
@@ -144,40 +144,40 @@ function extractAttacks(playerPet) {
 
 function showAttacks(attacks) {
     attacks.forEach((attack) => {
-        attackOptions =  `
+        attackOptions = `
         <button id=${attack.id} class="boton-ataque BAtaque">${attack.attackName}</button>
-        `
-    attacksContainer.innerHTML += attackOptions
+        `;
+        attacksContainer.innerHTML += attackOptions;
     });
 
     fireButton = document.getElementById('boton-fuego');
     waterButton = document.getElementById('boton-agua');
     groundButton = document.getElementById('boton-tierra');
-    buttons = document.querySelectorAll('.BAtaque')
+    buttons = document.querySelectorAll('.BAtaque');
 }
 
 function attackSequence() {
     buttons.forEach((button) => {
         button.addEventListener('click', (e) => {
             if (e.target.textContent === '🔥') {
-                playerAttack.push('FUEGO')
+                playerAttack.push('FUEGO');
                 console.log(playerAttack);
                 button.style.background = '#FFE9B1';
-            }else if (e.target.textContent === '💧') {
-                playerAttack.push('AGUA')
+            } else if (e.target.textContent === '💧') {
+                playerAttack.push('AGUA');
                 console.log(playerAttack);
                 button.style.background = '#FFE9B1';
-            }else {
-                playerAttack.push('TIERRA')
+            } else {
+                playerAttack.push('TIERRA');
                 console.log(playerAttack);
                 button.style.background = '#FFE9B1';
             }
-        })
+        });
     });
 }
 
 function selectEnemyPet() {
-    let randomPet = random(0, mokepons.length -1);
+    let randomPet = random(0, mokepons.length - 1);
 
     spanEnemyPet.innerHTML = mokepons[randomPet].name;
     attackSequence();
