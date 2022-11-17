@@ -165,15 +165,18 @@ function attackSequence() {
             if (e.target.textContent === '🔥') {
                 playerAttack.push('FUEGO');
                 console.log(playerAttack);
-                button.style.background = '#FFE9B1';
+                button.style.background = '#5717cf';
+                button.disabled = true
             } else if (e.target.textContent === '💧') {
                 playerAttack.push('AGUA');
                 console.log(playerAttack);
-                button.style.background = '#FFE9B1';
+                button.style.background = '#5717cf';
+                button.disabled = true
             } else {
                 playerAttack.push('TIERRA');
                 console.log(playerAttack);
-                button.style.background = '#FFE9B1';
+                button.style.background = '#5717cf';
+                button.disabled = true
             }
             selectEnemyAttack();
         });
@@ -267,13 +270,9 @@ function createMessage(combatResult) {
 }
 
 function createFinalMessage(finalResult) {
-    resetSection.style.display = 'block';
-
     messagesSection.innerHTML = finalResult;
 
-    fireButton.disabled = true;
-    waterButton.disabled = true;
-    groundButton.disabled = true;
+    resetSection.style.display = 'block';
 }
 
 function resetGame() {
