@@ -118,7 +118,7 @@ input:checked + label{
     align-items: center;
 }
 
-#vidas-mascota-jugador, #vidas-mascota-enemiga{
+#vidas-jugador, #vidas-enemigo{
     font-size:32px;
     margin-bottom:0;
 }

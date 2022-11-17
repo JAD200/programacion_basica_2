@@ -8,11 +8,10 @@ const resetGameButton = document.getElementById('boton-reset');
 
 const selectPetSection = document.getElementById('seleccionar-mascota');
 const spanPlayerPet = document.getElementById('mascota-jugador');
-
 const spanEnemyPet = document.getElementById('mascota-enemiga');
 
-const spanPlayerLives = document.getElementById('vidas-mascota-jugador');
-const spanEnemyLives = document.getElementById('vidas-mascota-enemiga');
+const spanPlayerLives = document.getElementById('vidas-jugador');
+const spanEnemyLives = document.getElementById('vidas-enemigo');
 
 const messagesSection = document.getElementById('resultado');
 const playerAttackMessage = document.getElementById('ataques-del-jugador');
@@ -42,10 +41,8 @@ let buttons = [];
 // Combat
 let indexPlayerAttack;
 let indexEnemyAttack;
-let playerVictories;
-let enemyVictories;
-let playerLives = 3;
-let enemyLives = 3;
+let playerVictories = 0;
+let enemyVictories = 0;
 
 // Mokepons
 class Mokepon {
@@ -224,15 +221,23 @@ function combat() {
         } else if (playerAttack[i] == 'FUEGO' && enemyAttack[i] == 'TIERRA') {
             indexBothOpponents(i, i);
             createMessage('🎉GANASTE🎉');
+            playerVictories++;
+            spanPlayerLives.innerHTML = playerVictories;
         } else if (playerAttack[i] == 'AGUA' && enemyAttack[i] == 'FUEGO') {
             indexBothOpponents(i, i);
             createMessage('🎉GANASTE🎉');
+            playerVictories++;
+            spanPlayerLives.innerHTML = playerVictories;
         } else if (playerAttack[i] == 'TIERRA' && enemyAttack[i] == 'AGUA') {
             indexBothOpponents(i, i);
             createMessage('🎉GANASTE🎉');
+            playerVictories++;
+            spanPlayerLives.innerHTML = playerVictories;
         } else {
             indexBothOpponents(i, i);
             createMessage('😢PERDISTE😢');
+            enemyVictories++;
+            spanEnemyLives.innerHTML = enemyVictories;
         }
     }
 
@@ -240,9 +245,11 @@ function combat() {
 }
 
 function checkLives() {
-    if (enemyLives == 0) {
+    if (playerVictories === enemyVictories) {
+        createFinalMessage('Esto fue un empate !!');
+    } else if (playerVictories > enemyVictories) {
         createFinalMessage('FELICITACIONES, GANASTE 🥳');
-    } else if (playerLives == 0) {
+    } else {
         createFinalMessage('Lo siento, perdiste 😔');
     }
 }
