@@ -39,7 +39,11 @@ let fireButton;
 let waterButton;
 let groundButton;
 let buttons = [];
-
+// Combat
+let indexPlayerAttack;
+let indexEnemyAttack;
+let playerVictories;
+let enemyVictories;
 let playerLives = 3;
 let enemyLives = 3;
 
@@ -198,28 +202,38 @@ function selectEnemyAttack() {
         enemyAttack.push('TIERRA');
     }
     console.log(enemyAttack);
-    combat();
+    beginFight();
+}
+
+function beginFight() {
+    if (playerAttack.length === 5) {
+        combat();
+    }
+}
+
+function indexBothOpponents(player, enemy) {
+    indexPlayerAttack = playerAttack[player];
+    indexEnemyAttack = enemyAttack[enemy];
 }
 
 function combat() {
-    if (enemyAttack == playerAttack) {
-        createMessage('EMPATE');
-    } else if (playerAttack == 'FUEGO' && enemyAttack == 'TIERRA') {
-        createMessage('🎉GANASTE🎉');
-        enemyLives--;
-        spanEnemyLives.innerHTML = enemyLives;
-    } else if (playerAttack == 'AGUA' && enemyAttack == 'FUEGO') {
-        createMessage('🎉GANASTE🎉');
-        enemyLives--;
-        spanEnemyLives.innerHTML = enemyLives;
-    } else if (playerAttack == 'TIERRA' && enemyAttack == 'AGUA') {
-        createMessage('🎉GANASTE🎉');
-        enemyLives--;
-        spanEnemyLives.innerHTML = enemyLives;
-    } else {
-        createMessage('😢PERDISTE😢');
-        playerLives--;
-        spanPlayerLives.innerHTML = playerLives;
+    for (let i = 0; i < playerAttack.length; i++) {
+        if (playerAttack[i] === enemyAttack[i]) {
+            indexBothOpponents(i, i);
+            createMessage('EMPATE');
+        } else if (playerAttack[i] == 'FUEGO' && enemyAttack[i] == 'TIERRA') {
+            indexBothOpponents(i, i);
+            createMessage('🎉GANASTE🎉');
+        } else if (playerAttack[i] == 'AGUA' && enemyAttack[i] == 'FUEGO') {
+            indexBothOpponents(i, i);
+            createMessage('🎉GANASTE🎉');
+        } else if (playerAttack[i] == 'TIERRA' && enemyAttack[i] == 'AGUA') {
+            indexBothOpponents(i, i);
+            createMessage('🎉GANASTE🎉');
+        } else {
+            indexBothOpponents(i, i);
+            createMessage('😢PERDISTE😢');
+        }
     }
 
     checkLives();
@@ -238,8 +252,8 @@ function createMessage(combatResult) {
     let newEnemyAttack = document.createElement('p');
 
     messagesSection.innerHTML = combatResult;
-    newPlayerAttack.innerHTML = playerAttack;
-    newEnemyAttack.innerHTML = enemyAttack;
+    newPlayerAttack.innerHTML = indexPlayerAttack;
+    newEnemyAttack.innerHTML = indexEnemyAttack;
 
     playerAttackMessage.appendChild(newPlayerAttack);
     enemyAttackMessage.appendChild(newEnemyAttack);
