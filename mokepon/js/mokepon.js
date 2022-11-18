@@ -54,6 +54,11 @@ class Mokepon {
     }
 }
 
+// TODO
+// Add types to the mokepons
+// Add advantages and disadvantages depending on the type they confront
+// Add new mokepons
+
 let hipodoge = new Mokepon('Hipodoge', './assets/mokepon-hipodoge.png', 5);
 
 let capipepo = new Mokepon('Capipepo', './assets/mokepon-capipepo.png', 5);
@@ -61,27 +66,27 @@ let capipepo = new Mokepon('Capipepo', './assets/mokepon-capipepo.png', 5);
 let ratigueya = new Mokepon('Ratigueya', './assets/mokepon-ratigueya.png', 4);
 
 hipodoge.attacks.push(
-    { attackName: '💧', id: 'boton-agua' },
-    { attackName: '💧', id: 'boton-agua' },
-    { attackName: '💧', id: 'boton-agua' },
-    { attackName: '🔥', id: 'boton-fuego' },
-    { attackName: '🌱', id: 'boton-tierra' }
+    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
+    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
+    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
+    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
+    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' }
 );
 
 capipepo.attacks.push(
-    { attackName: '🌱', id: 'boton-tierra' },
-    { attackName: '🌱', id: 'boton-tierra' },
-    { attackName: '🌱', id: 'boton-tierra' },
-    { attackName: '💧', id: 'boton-agua' },
-    { attackName: '🔥', id: 'boton-fuego' }
+    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
+    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
+    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
+    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
+    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' }
 );
 
 ratigueya.attacks.push(
-    { attackName: '🔥', id: 'boton-fuego' },
-    { attackName: '🔥', id: 'boton-fuego' },
-    { attackName: '🔥', id: 'boton-fuego' },
-    { attackName: '💧', id: 'boton-agua' },
-    { attackName: '🌱', id: 'boton-tierra' }
+    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
+    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
+    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
+    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
+    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' }
 );
 
 mokepons.push(hipodoge, capipepo, ratigueya);
@@ -166,17 +171,17 @@ function attackSequence() {
                 playerAttack.push('FUEGO');
                 console.log(playerAttack);
                 button.style.background = '#5717cf';
-                button.disabled = true
+                button.disabled = true;
             } else if (e.target.textContent === '💧') {
                 playerAttack.push('AGUA');
                 console.log(playerAttack);
                 button.style.background = '#5717cf';
-                button.disabled = true
+                button.disabled = true;
             } else {
                 playerAttack.push('TIERRA');
                 console.log(playerAttack);
                 button.style.background = '#5717cf';
-                button.disabled = true
+                button.disabled = true;
             }
             selectEnemyAttack();
         });
@@ -193,14 +198,9 @@ function selectEnemyPet() {
 
 function selectEnemyAttack() {
     let randomAttack = random(0, enemyMokeponAttacks.length - 1);
+    enemyAttack.push(enemyMokeponAttacks[randomAttack].pushName);
 
-    if (randomAttack === 0 || randomAttack === 1) {
-        enemyAttack.push('FUEGO');
-    } else if (randomAttack === 3 || randomAttack == 4) {
-        enemyAttack.push('AGUA');
-    } else {
-        enemyAttack.push('TIERRA');
-    }
+    enemyMokeponAttacks.splice(randomAttack, 1);
     console.log(enemyAttack);
     beginFight();
 }
