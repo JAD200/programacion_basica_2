@@ -109,16 +109,31 @@ input:checked + label{
 
 .combate {
     display: grid;
-    grid-template-columns: 100px 100px;
+    grid-template-columns: 120px 120px;
     column-gap: 75px;
     color: #fcfdf2;
     justify-items: center;
+    margin-top: 10px;
+}
+
+.combate img {
+    width: 90px;
 }
 
 .combate-jugador, .combate-enemigo {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: [mokepon]105px [combat] 1fr;
+    grid-template-rows: [mokepon] 90px [lives] 1fr;
+    justify-items: center;
     align-items: center;
+}
+
+.combate-enemigo{
+    grid-template-columns: [combat]1fr [mokepon]105px;
+}
+
+#mascota-jugador, #mascota-enemiga {
+    align-self: flex-start;
 }
 
 #vidas-jugador, #vidas-enemigo{
@@ -127,6 +142,10 @@ input:checked + label{
 }
 
 @media (max-width: 550px) {
+    #boton-mascota{
+        margin-bottom: 30px;
+    }
+
     .tarjetas, .tarjetas-ataques{
         flex-direction: column;
     }

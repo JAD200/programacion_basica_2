@@ -19,6 +19,9 @@ const enemyAttackMessage = document.getElementById('ataques-del-enemigo');
 const cardsContainer = document.getElementById('contenedor-tarjetas');
 const attacksContainer = document.getElementById('contenedor-ataques');
 
+const cardPlayerPetImage = document.getElementById('imagen-mascota-jugador');
+const cardEnemyPetImage = document.getElementById('imagen-mascota-enemigo');
+
 let mokepons = [];
 // Attacks
 let playerAttack = [];
@@ -36,6 +39,8 @@ let playerMokeponAttacks;
 let enemyMokeponAttacks;
 
 let playerPet;
+let playerPetImage;
+let enemyPetImage;
 // Buttons
 let fireButton;
 let waterButton;
@@ -57,21 +62,21 @@ class Mokepon {
     }
 }
 
-// TODO
-// Add types to the mokepons
-// Add advantages and disadvantages depending on the type they confront
-
 let hipodoge = new Mokepon('Hipodoge', './assets/mokepon-hipodoge.png', 5);
 
 let capipepo = new Mokepon('Capipepo', './assets/mokepon-capipepo.png', 5);
 
 let ratigueya = new Mokepon('Ratigueya', './assets/mokepon-ratigueya.png', 4);
 
-let langostelvis = new Mokepon('Langostelvis', './assets/mokepon-langostelvis.png', 5)
+let langostelvis = new Mokepon(
+    'Langostelvis',
+    './assets/mokepon-langostelvis.png',
+    5
+);
 
-let pydos = new Mokepon('Pydos', './assets/mokepon-pydos.png', 5)
+let pydos = new Mokepon('Pydos', './assets/mokepon-pydos.png', 5);
 
-let tucapalma = new Mokepon('Tucapalma', './assets/mokepon-tucapalma.png', 4)
+let tucapalma = new Mokepon('Tucapalma', './assets/mokepon-tucapalma.png', 4);
 
 hipodoge.attacks.push(
     { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
@@ -103,23 +108,23 @@ langostelvis.attacks.push(
     { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
     { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
     { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' }
-)
+);
 
 pydos.attacks.push(
     { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
     { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
     { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
     { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
-    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
-)
+    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' }
+);
 
 tucapalma.attacks.push(
     { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
     { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
     { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
     { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
-    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
-)
+    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' }
+);
 
 mokepons.push(hipodoge, capipepo, ratigueya, langostelvis, pydos, tucapalma);
 
@@ -232,11 +237,30 @@ function attackSequence() {
     });
 }
 
+function showMokeponsImage(playerPet, enemyPet) {
+    playerPetImage = `
+            <img
+                src='./assets/mokepon-${playerPet}.png'
+                alt="mokepon-${playerPet}"
+            />
+        `;
+    cardPlayerPetImage.innerHTML += playerPetImage;
+
+    enemyPetImage = `
+            <img
+                src='./assets/mokepon-${enemyPet}.png'
+                alt="mokepon-${enemyPet}"
+            />
+        `;
+    cardEnemyPetImage.innerHTML += enemyPetImage;
+}
+
 function selectEnemyPet() {
     let randomPet = random(0, mokepons.length - 1);
 
     spanEnemyPet.innerHTML = mokepons[randomPet].name;
     enemyMokeponAttacks = mokepons[randomPet].attacks;
+    showMokeponsImage(playerPet, spanEnemyPet.textContent);
     attackSequence();
 }
 
