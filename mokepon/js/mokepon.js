@@ -27,6 +27,9 @@ let enemyAttack = [];
 let inputHipodoge;
 let inputCapipepo;
 let inputRatigueya;
+let inputLangostelvis;
+let inputPydos;
+let inputTucapalma;
 // Options
 let mokeponsOption;
 let playerMokeponAttacks;
@@ -57,13 +60,18 @@ class Mokepon {
 // TODO
 // Add types to the mokepons
 // Add advantages and disadvantages depending on the type they confront
-// Add new mokepons
 
 let hipodoge = new Mokepon('Hipodoge', './assets/mokepon-hipodoge.png', 5);
 
 let capipepo = new Mokepon('Capipepo', './assets/mokepon-capipepo.png', 5);
 
 let ratigueya = new Mokepon('Ratigueya', './assets/mokepon-ratigueya.png', 4);
+
+let langostelvis = new Mokepon('Langostelvis', './assets/mokepon-langostelvis.png', 5)
+
+let pydos = new Mokepon('Pydos', './assets/mokepon-pydos.png', 5)
+
+let tucapalma = new Mokepon('Tucapalma', './assets/mokepon-tucapalma.png', 4)
 
 hipodoge.attacks.push(
     { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
@@ -89,7 +97,31 @@ ratigueya.attacks.push(
     { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' }
 );
 
-mokepons.push(hipodoge, capipepo, ratigueya);
+langostelvis.attacks.push(
+    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
+    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
+    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
+    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
+    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' }
+)
+
+pydos.attacks.push(
+    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
+    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
+    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
+    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
+    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
+)
+
+tucapalma.attacks.push(
+    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
+    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
+    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
+    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
+    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
+)
+
+mokepons.push(hipodoge, capipepo, ratigueya, langostelvis, pydos, tucapalma);
 
 function beginGame() {
     selectAttackSection.style.display = 'none';
@@ -111,6 +143,9 @@ function beginGame() {
         inputHipodoge = document.getElementById('Hipodoge');
         inputCapipepo = document.getElementById('Capipepo');
         inputRatigueya = document.getElementById('Ratigueya');
+        inputLangostelvis = document.getElementById('Langostelvis');
+        inputPydos = document.getElementById('Pydos');
+        inputTucapalma = document.getElementById('Tucapalma');
     });
 
     playerMascotButton.addEventListener('click', selectPlayerPet);
@@ -130,6 +165,15 @@ function selectPlayerPet() {
     } else if (inputRatigueya.checked) {
         spanPlayerPet.innerHTML = inputRatigueya.id;
         playerPet = inputRatigueya.id;
+    } else if (inputLangostelvis.checked) {
+        spanPlayerPet.innerHTML = inputLangostelvis.id;
+        playerPet = inputLangostelvis.id;
+    } else if (inputPydos.checked) {
+        spanPlayerPet.innerHTML = inputPydos.id;
+        playerPet = inputPydos.id;
+    } else if (inputTucapalma.checked) {
+        spanPlayerPet.innerHTML = inputTucapalma.id;
+        playerPet = inputTucapalma.id;
     } else {
         alert('Selecciona una mascota, por favor');
         return (selectPetSection.style.display = 'flex');
