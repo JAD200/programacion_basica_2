@@ -57,6 +57,7 @@ let enemyVictories = 0;
 
 // Canvas
 let canvas = map.getContext('2d');
+let interval
 
 // Mokepons
 class Mokepon {
@@ -70,7 +71,9 @@ class Mokepon {
         this.width = 80;
         this.height = 80;
         this.pictureMap = new Image();
-        this.pictureMap.src = picture
+        this.pictureMap.src = picture;
+        this.xVelocity = 0;
+        this.yVelocity = 0;
     }
 }
 
@@ -197,6 +200,7 @@ function selectPlayerPet() {
     selectEnemyPet();
     // selectAttackSection.style.display = 'flex';
     sectionSeeMap.style.display = 'flex';
+    interval = setInterval(drawMokepon, 50)
 }
 
 function extractAttacks(playerPet) {
@@ -362,6 +366,8 @@ function random(min, max) {
 }
 
 function drawMokepon() {
+    capipepo.x += capipepo.xVelocity;
+    capipepo.y += capipepo.yVelocity;
     canvas.clearRect(0, 0, map.width, map.height)
     canvas.drawImage(
         capipepo.pictureMap, 
@@ -372,14 +378,22 @@ function drawMokepon() {
     );
 }
 
-function moveCapipepo() {
-    capipepo.x = capipepo.x + 4
-    drawMokepon()
+function moveArriba() {
+    capipepo.yVelocity =- 5;
+}
+function moveIzquierda() {
+    capipepo.xVelocity =- 5;
+}
+function moveAbajo() {
+    capipepo.yVelocity = 5;
+}
+function moveDerecha() {
+    capipepo.xVelocity = 5;
 }
 
-function moveCapipepoY() {
-    capipepo.y = capipepo.y + 4
-    drawMokepon()
+function stopMovement() {
+    capipepo.xVelocity = 0
+    capipepo.yVelocity = 0
 }
 
 window.addEventListener('load', beginGame);
