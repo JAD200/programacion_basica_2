@@ -22,6 +22,9 @@ const attacksContainer = document.getElementById('contenedor-ataques');
 const cardPlayerPetImage = document.getElementById('imagen-mascota-jugador');
 const cardEnemyPetImage = document.getElementById('imagen-mascota-enemigo');
 
+const sectionSeeMap = document.getElementById('ver-mapa');
+const map = document.getElementById('mapa');
+
 let mokepons = [];
 // Attacks
 let playerAttack = [];
@@ -52,6 +55,9 @@ let indexEnemyAttack;
 let playerVictories = 0;
 let enemyVictories = 0;
 
+// Canvas
+let canvas = map.getContext('2d');
+
 // Mokepons
 class Mokepon {
     constructor(name, picture, life) {
@@ -59,6 +65,12 @@ class Mokepon {
         this.picture = picture;
         this.life = life;
         this.attacks = [];
+        this.x = 20;
+        this.y = 30;
+        this.width = 80;
+        this.height = 80;
+        this.pictureMap = new Image();
+        this.pictureMap.src = picture
     }
 }
 
@@ -68,11 +80,7 @@ let capipepo = new Mokepon('Capipepo', './assets/mokepon-capipepo.png', 5);
 
 let ratigueya = new Mokepon('Ratigueya', './assets/mokepon-ratigueya.png', 4);
 
-let langostelvis = new Mokepon(
-    'Langostelvis',
-    './assets/mokepon-langostelvis.png',
-    5
-);
+let langostelvis = new Mokepon('Langostelvis', './assets/mokepon-langostelvis.png', 5);
 
 let pydos = new Mokepon('Pydos', './assets/mokepon-pydos.png', 5);
 
@@ -130,6 +138,7 @@ mokepons.push(hipodoge, capipepo, ratigueya, langostelvis, pydos, tucapalma);
 
 function beginGame() {
     selectAttackSection.style.display = 'none';
+    sectionSeeMap.style.display = 'none';
     resetSection.style.display = 'none';
 
     mokepons.forEach((mokepon) => {
@@ -186,7 +195,8 @@ function selectPlayerPet() {
 
     extractAttacks(playerPet);
     selectEnemyPet();
-    selectAttackSection.style.display = 'flex';
+    // selectAttackSection.style.display = 'flex';
+    sectionSeeMap.style.display = 'flex';
 }
 
 function extractAttacks(playerPet) {
@@ -349,6 +359,27 @@ function resetGame() {
 
 function random(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function drawMokepon() {
+    canvas.clearRect(0, 0, map.width, map.height)
+    canvas.drawImage(
+        capipepo.pictureMap, 
+        capipepo.x,
+        capipepo.y,
+        capipepo.width,
+        capipepo.height
+    );
+}
+
+function moveCapipepo() {
+    capipepo.x = capipepo.x + 4
+    drawMokepon()
+}
+
+function moveCapipepoY() {
+    capipepo.y = capipepo.y + 4
+    drawMokepon()
 }
 
 window.addEventListener('load', beginGame);
