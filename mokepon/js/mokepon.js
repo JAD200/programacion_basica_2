@@ -200,7 +200,7 @@ function selectPlayerPet() {
     selectEnemyPet();
     // selectAttackSection.style.display = 'flex';
     sectionSeeMap.style.display = 'flex';
-    interval = setInterval(drawMokepon, 50)
+    initiateMap();
 }
 
 function extractAttacks(playerPet) {
@@ -365,6 +365,14 @@ function random(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+function initiateMap() {
+    interval = setInterval(drawMokepon, 50)
+
+    window.addEventListener('keydown', aKeyWasPressed)
+    
+    window.addEventListener('keyup', stopMovement)
+}
+
 function drawMokepon() {
     capipepo.x += capipepo.xVelocity;
     capipepo.y += capipepo.yVelocity;
@@ -378,22 +386,42 @@ function drawMokepon() {
     );
 }
 
-function moveArriba() {
+function moveUp() {
     capipepo.yVelocity =- 5;
 }
-function moveIzquierda() {
+function moveLeft() {
     capipepo.xVelocity =- 5;
 }
-function moveAbajo() {
+function moveDown() {
     capipepo.yVelocity = 5;
 }
-function moveDerecha() {
+function moveRight() {
     capipepo.xVelocity = 5;
 }
 
 function stopMovement() {
     capipepo.xVelocity = 0
     capipepo.yVelocity = 0
+}
+
+function aKeyWasPressed(event) {
+    switch (event.key) {
+        case 'ArrowUp':
+            moveUp()
+            break;
+        case 'ArrowLeft':
+            moveLeft()
+            break;
+        case 'ArrowDown':
+            moveDown()
+            break;
+        case 'ArrowRight':
+            moveRight()
+            break;
+        default:
+            stopMovement()
+            break;
+    }
 }
 
 window.addEventListener('load', beginGame);
