@@ -86,7 +86,7 @@ class Mokepon {
             this.y,
             this.width,
             this.height
-        )
+        );
     }
 }
 
@@ -111,11 +111,26 @@ let ratigueya = new Mokepon(
     './assets/cabeza-ratigueya.png'
 );
 
-// let langostelvis = new Mokepon('Langostelvis', './assets/mokepon-langostelvis.png', 5);
+let langostelvis = new Mokepon(
+    'Langostelvis',
+    './assets/mokepon-langostelvis.png',
+    5,
+    './assets/cabeza-langostelvis.png'
+);
 
-// let pydos = new Mokepon('Pydos', './assets/mokepon-pydos.png', 5);
+let pydos = new Mokepon(
+    'Pydos',
+    './assets/mokepon-pydos.png',
+    5,
+    './assets/cabeza-pydos.png'
+);
 
-// let tucapalma = new Mokepon('Tucapalma', './assets/mokepon-tucapalma.png', 4);
+let tucapalma = new Mokepon(
+    'Tucapalma',
+    './assets/mokepon-tucapalma.png',
+    4,
+    './assets/cabeza-tucapalma.png'
+);
 
 //* Enemies
 let enemyHipodoge = new Mokepon(
@@ -193,7 +208,7 @@ ratigueya.attacks.push(
 //     { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' }
 // );
 
-mokepons.push(hipodoge, capipepo, ratigueya);
+mokepons.push(hipodoge, capipepo, ratigueya, langostelvis, pydos, tucapalma );
 
 function beginGame() {
     selectAttackSection.style.display = 'none';
@@ -433,7 +448,7 @@ function initiateMap() {
     map.width = 320;
     map.height = 240;
     playerPetObject = obtainPetObject();
-    console.table(playerPetObject,playerPet);
+    console.table(playerPetObject, playerPet);
     interval = setInterval(drawCanvas, 50);
 
     window.addEventListener('keydown', aKeyWasPressed);
