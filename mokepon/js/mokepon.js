@@ -43,6 +43,7 @@ let enemyMokeponAttacks;
 
 let playerPet;
 let playerPetImage;
+let playerPetObject;
 let enemyPetImage;
 // Buttons
 let fireButton;
@@ -58,6 +59,8 @@ let enemyVictories = 0;
 // Canvas
 let canvas = map.getContext('2d');
 let interval
+let mapBackground = new Image()
+mapBackground.src = './assets/mokemapa.png'
 
 // Mokepons
 class Mokepon {
@@ -366,42 +369,61 @@ function random(min, max) {
 }
 
 function initiateMap() {
-    interval = setInterval(drawMokepon, 50)
+    map.width = 320
+    map.height = 240
+    playerPetObject = obtainPetObject()
+    interval = setInterval(drawCanvas, 50)
 
     window.addEventListener('keydown', aKeyWasPressed)
     
     window.addEventListener('keyup', stopMovement)
 }
 
-function drawMokepon() {
-    capipepo.x += capipepo.xVelocity;
-    capipepo.y += capipepo.yVelocity;
+function obtainPetObject() {
+    for (let i = 0; i < mokepons.length; i++) {
+        if (playerPet === mokepons[i].name) {
+            return mokepons[i]
+        }
+    }
+}
+
+function drawCanvas() {
+    obtainPetObject()
+    playerPetObject.x += playerPetObject.xVelocity;
+    playerPetObject.y += playerPetObject.yVelocity;
     canvas.clearRect(0, 0, map.width, map.height)
     canvas.drawImage(
-        capipepo.pictureMap, 
-        capipepo.x,
-        capipepo.y,
-        capipepo.width,
-        capipepo.height
+        mapBackground,
+        0,
+        0,
+        map.width,
+        map.height
+    )
+    canvas.drawImage(
+        playerPetObject.pictureMap, 
+        playerPetObject.x,
+        playerPetObject.y,
+        playerPetObject.width,
+        playerPetObject.height
     );
 }
 
 function moveUp() {
-    capipepo.yVelocity =- 5;
+    playerPetObject.yVelocity =- 5;
 }
 function moveLeft() {
-    capipepo.xVelocity =- 5;
+    playerPetObject.xVelocity =- 5;
 }
 function moveDown() {
-    capipepo.yVelocity = 5;
+    playerPetObject.yVelocity = 5;
 }
 function moveRight() {
-    capipepo.xVelocity = 5;
+    playerPetObject.xVelocity = 5;
 }
 
 function stopMovement() {
-    capipepo.xVelocity = 0
-    capipepo.yVelocity = 0
+    playerPetObject.xVelocity = 0
+    playerPetObject.yVelocity = 0
 }
 
 function aKeyWasPressed(event) {
