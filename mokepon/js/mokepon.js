@@ -208,7 +208,7 @@ ratigueya.attacks.push(
 //     { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' }
 // );
 
-mokepons.push(hipodoge, capipepo, ratigueya, langostelvis, pydos, tucapalma );
+mokepons.push(hipodoge, capipepo, ratigueya, langostelvis, pydos, tucapalma);
 
 function beginGame() {
     selectAttackSection.style.display = 'none';
@@ -456,6 +456,30 @@ function initiateMap() {
     window.addEventListener('keyup', stopMovement);
 }
 
+function checkCollision(enemy) {
+    const upEnemy = enemy.y;
+    const downEnemy = enemy.y + enemy.height;
+    const rightEnemy = enemy.x + enemy.width;
+    const leftEnemy = enemy.x;
+
+    const upPet = playerPetObject.y + 10;
+    const downPet = playerPetObject.y + playerPetObject.height - 10;
+    const rightPet = playerPetObject.x + playerPetObject.width - 10;
+    const leftPet = playerPetObject.x + 10;
+
+    if (
+        downPet < upEnemy ||
+        upPet > downEnemy ||
+        rightPet < leftEnemy ||
+        leftPet > rightEnemy
+    ) {
+        return;
+    }
+
+    stopMovement()
+    alert('Holi' + enemy.name)
+}
+
 function drawCanvas() {
     playerPetObject.x += playerPetObject.xVelocity;
     playerPetObject.y += playerPetObject.yVelocity;
@@ -466,6 +490,12 @@ function drawCanvas() {
     enemyHipodoge.drawMokepon();
     enemyCapipepo.drawMokepon();
     enemyRatigueya.drawMokepon();
+    if (playerPetObject.xVelocity !== 0 || playerPetObject.yVelocity !== 0) {
+        checkCollision(enemyHipodoge)
+        checkCollision(enemyCapipepo)
+        checkCollision(enemyRatigueya)
+
+    }
 }
 
 function moveUp() {
