@@ -57,40 +57,93 @@ let playerVictories = 0;
 let enemyVictories = 0;
 
 // Canvas
-let canvas = map.getContext('2d');
-let interval
-let mapBackground = new Image()
-mapBackground.src = './assets/mokemapa.png'
+let painting = map.getContext('2d');
+let interval;
+let mapBackground = new Image();
+mapBackground.src = './assets/mokemapa.png';
 
 // Mokepons
 class Mokepon {
-    constructor(name, picture, life) {
+    constructor(name, picture, life, mapPicture, x = 10, y = 10) {
         this.name = name;
         this.picture = picture;
         this.life = life;
         this.attacks = [];
-        this.x = 20;
-        this.y = 30;
-        this.width = 80;
-        this.height = 80;
+        this.x = x;
+        this.y = y;
+        this.width = 40;
+        this.height = 40;
         this.pictureMap = new Image();
-        this.pictureMap.src = picture;
+        this.pictureMap.src = mapPicture;
         this.xVelocity = 0;
         this.yVelocity = 0;
     }
+
+    drawMokepon() {
+        painting.drawImage(
+            this.pictureMap,
+            this.x,
+            this.y,
+            this.width,
+            this.height
+        )
+    }
 }
 
-let hipodoge = new Mokepon('Hipodoge', './assets/mokepon-hipodoge.png', 5);
+let hipodoge = new Mokepon(
+    'Hipodoge',
+    './assets/mokepon-hipodoge.png',
+    5,
+    './assets/cabeza-hipodoge.png'
+);
 
-let capipepo = new Mokepon('Capipepo', './assets/mokepon-capipepo.png', 5);
+let capipepo = new Mokepon(
+    'Capipepo',
+    './assets/mokepon-capipepo.png',
+    5,
+    './assets/cabeza-capipepo.png'
+);
 
-let ratigueya = new Mokepon('Ratigueya', './assets/mokepon-ratigueya.png', 4);
+let ratigueya = new Mokepon(
+    'Ratigueya',
+    './assets/mokepon-ratigueya.png',
+    4,
+    './assets/cabeza-ratigueya.png'
+);
 
-let langostelvis = new Mokepon('Langostelvis', './assets/mokepon-langostelvis.png', 5);
+// let langostelvis = new Mokepon('Langostelvis', './assets/mokepon-langostelvis.png', 5);
 
-let pydos = new Mokepon('Pydos', './assets/mokepon-pydos.png', 5);
+// let pydos = new Mokepon('Pydos', './assets/mokepon-pydos.png', 5);
 
-let tucapalma = new Mokepon('Tucapalma', './assets/mokepon-tucapalma.png', 4);
+// let tucapalma = new Mokepon('Tucapalma', './assets/mokepon-tucapalma.png', 4);
+
+//* Enemies
+let enemyHipodoge = new Mokepon(
+    'Hipodoge',
+    './assets/mokepon-hipodoge.png',
+    5,
+    './assets/cabeza-hipodoge.png',
+    80,
+    120
+);
+
+let enemyCapipepo = new Mokepon(
+    'Capipepo',
+    './assets/mokepon-capipepo.png',
+    5,
+    './assets/cabeza-capipepo.png',
+    150,
+    95
+);
+
+let enemyRatigueya = new Mokepon(
+    'Ratigueya',
+    './assets/mokepon-ratigueya.png',
+    4,
+    './assets/cabeza-ratigueya.png',
+    200,
+    190
+);
 
 hipodoge.attacks.push(
     { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
@@ -116,31 +169,31 @@ ratigueya.attacks.push(
     { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' }
 );
 
-langostelvis.attacks.push(
-    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
-    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
-    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
-    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
-    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' }
-);
+// langostelvis.attacks.push(
+//     { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
+//     { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
+//     { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
+//     { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
+//     { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' }
+// );
 
-pydos.attacks.push(
-    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
-    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
-    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
-    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
-    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' }
-);
+// pydos.attacks.push(
+//     { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
+//     { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
+//     { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
+//     { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
+//     { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' }
+// );
 
-tucapalma.attacks.push(
-    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
-    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
-    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
-    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
-    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' }
-);
+// tucapalma.attacks.push(
+//     { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
+//     { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
+//     { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
+//     { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
+//     { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' }
+// );
 
-mokepons.push(hipodoge, capipepo, ratigueya, langostelvis, pydos, tucapalma);
+mokepons.push(hipodoge, capipepo, ratigueya);
 
 function beginGame() {
     selectAttackSection.style.display = 'none';
@@ -368,51 +421,43 @@ function random(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function initiateMap() {
-    map.width = 320
-    map.height = 240
-    playerPetObject = obtainPetObject()
-    interval = setInterval(drawCanvas, 50)
-
-    window.addEventListener('keydown', aKeyWasPressed)
-    
-    window.addEventListener('keyup', stopMovement)
-}
-
 function obtainPetObject() {
     for (let i = 0; i < mokepons.length; i++) {
         if (playerPet === mokepons[i].name) {
-            return mokepons[i]
+            return mokepons[i];
         }
     }
 }
 
+function initiateMap() {
+    map.width = 320;
+    map.height = 240;
+    playerPetObject = obtainPetObject();
+    console.table(playerPetObject,playerPet);
+    interval = setInterval(drawCanvas, 50);
+
+    window.addEventListener('keydown', aKeyWasPressed);
+
+    window.addEventListener('keyup', stopMovement);
+}
+
 function drawCanvas() {
-    obtainPetObject()
     playerPetObject.x += playerPetObject.xVelocity;
     playerPetObject.y += playerPetObject.yVelocity;
-    canvas.clearRect(0, 0, map.width, map.height)
-    canvas.drawImage(
-        mapBackground,
-        0,
-        0,
-        map.width,
-        map.height
-    )
-    canvas.drawImage(
-        playerPetObject.pictureMap, 
-        playerPetObject.x,
-        playerPetObject.y,
-        playerPetObject.width,
-        playerPetObject.height
-    );
+    painting.clearRect(0, 0, map.width, map.height);
+    painting.drawImage(mapBackground, 0, 0, map.width, map.height);
+
+    playerPetObject.drawMokepon();
+    enemyHipodoge.drawMokepon();
+    enemyCapipepo.drawMokepon();
+    enemyRatigueya.drawMokepon();
 }
 
 function moveUp() {
-    playerPetObject.yVelocity =- 5;
+    playerPetObject.yVelocity = -5;
 }
 function moveLeft() {
-    playerPetObject.xVelocity =- 5;
+    playerPetObject.xVelocity = -5;
 }
 function moveDown() {
     playerPetObject.yVelocity = 5;
@@ -422,26 +467,26 @@ function moveRight() {
 }
 
 function stopMovement() {
-    playerPetObject.xVelocity = 0
-    playerPetObject.yVelocity = 0
+    playerPetObject.xVelocity = 0;
+    playerPetObject.yVelocity = 0;
 }
 
 function aKeyWasPressed(event) {
     switch (event.key) {
         case 'ArrowUp':
-            moveUp()
+            moveUp();
             break;
         case 'ArrowLeft':
-            moveLeft()
+            moveLeft();
             break;
         case 'ArrowDown':
-            moveDown()
+            moveDown();
             break;
         case 'ArrowRight':
-            moveRight()
+            moveRight();
             break;
         default:
-            stopMovement()
+            stopMovement();
             break;
     }
 }
