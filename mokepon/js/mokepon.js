@@ -24,6 +24,7 @@ const cardEnemyPetImage = document.getElementById('imagen-mascota-enemigo');
 
 const seeMapSection = document.getElementById('ver-mapa');
 const map = document.getElementById('mapa');
+const maxMapWidth = 350;
 
 let mokepons = [];
 // Attacks
@@ -61,18 +62,28 @@ let painting = map.getContext('2d');
 let interval;
 let mapBackground = new Image();
 mapBackground.src = './assets/mokemapa.png';
+let searchedHeight;
+let mapWidth = window.innerWidth - 20;
+if (mapWidth > maxMapWidth) {
+    mapWidth == maxMapWidth - 20;
+}
+
+searchedHeight = (mapWidth * 600) / 800;
+
+map.width = mapWidth;
+map.height = searchedHeight;
 
 // Mokepons
 class Mokepon {
-    constructor(name, picture, life, mapPicture, x = 10, y = 10) {
+    constructor(name, picture, life, mapPicture) {
         this.name = name;
         this.picture = picture;
         this.life = life;
         this.attacks = [];
-        this.x = x;
-        this.y = y;
         this.width = 40;
         this.height = 40;
+        this.x = random(0, map.width - this.width);
+        this.y = random(0, map.height - this.height);
         this.pictureMap = new Image();
         this.pictureMap.src = mapPicture;
         this.xVelocity = 0;
@@ -137,27 +148,21 @@ let enemyHipodoge = new Mokepon(
     'Hipodoge',
     './assets/mokepon-hipodoge.png',
     5,
-    './assets/cabeza-hipodoge.png',
-    80,
-    120
+    './assets/cabeza-hipodoge.png'
 );
 
 let enemyCapipepo = new Mokepon(
     'Capipepo',
     './assets/mokepon-capipepo.png',
     5,
-    './assets/cabeza-capipepo.png',
-    150,
-    95
+    './assets/cabeza-capipepo.png'
 );
 
 let enemyRatigueya = new Mokepon(
     'Ratigueya',
     './assets/mokepon-ratigueya.png',
     4,
-    './assets/cabeza-ratigueya.png',
-    200,
-    190
+    './assets/cabeza-ratigueya.png'
 );
 
 hipodoge.attacks.push(
@@ -234,7 +239,7 @@ enemyRatigueya.attacks.push(
 //     { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' }
 // );
 
-mokepons.push(hipodoge, capipepo, ratigueya);//, langostelvis, pydos, tucapalma);
+mokepons.push(hipodoge, capipepo, ratigueya); //, langostelvis, pydos, tucapalma);
 
 function beginGame() {
     selectAttackSection.style.display = 'none';
@@ -467,8 +472,6 @@ function obtainPetObject() {
 }
 
 function initiateMap() {
-    map.width = 320;
-    map.height = 240;
     playerPetObject = obtainPetObject();
     console.table(playerPetObject, playerPet);
     interval = setInterval(drawCanvas, 50);
@@ -498,10 +501,10 @@ function checkCollision(enemy) {
         return;
     }
 
-    stopMovement()
-    clearInterval(interval)
-    selectAttackSection.style.display = 'flex'
-    seeMapSection.style.display = 'none'
+    stopMovement();
+    clearInterval(interval);
+    selectAttackSection.style.display = 'flex';
+    seeMapSection.style.display = 'none';
     selectEnemyPet(enemy);
 }
 
@@ -516,9 +519,9 @@ function drawCanvas() {
     enemyCapipepo.drawMokepon();
     enemyRatigueya.drawMokepon();
     if (playerPetObject.xVelocity !== 0 || playerPetObject.yVelocity !== 0) {
-        checkCollision(enemyHipodoge)
-        checkCollision(enemyCapipepo)
-        checkCollision(enemyRatigueya)
+        checkCollision(enemyHipodoge);
+        checkCollision(enemyCapipepo);
+        checkCollision(enemyRatigueya);
     }
 }
 

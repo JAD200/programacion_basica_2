@@ -147,10 +147,6 @@ input:checked + label{
     justify-content: center;
 }
 
-#mapa {
-    border: 2px solid #fff;
-}
-
 @media (max-width: 550px) {
     #boton-mascota{
         margin-bottom: 30px;
