@@ -147,6 +147,17 @@ input:checked + label{
     justify-content: center;
 }
 
+#ver-mapa button {
+    background: transparent;
+    border-radius: 20px;
+    border: 1px solid #fff;
+    color: #fcfdf2;
+    font-family: 'Poppins', sans-serif;
+    height: 40px;
+    margin: 10px 0px;
+    width: 80px;
+}
+
 @media (max-width: 550px) {
     #boton-mascota{
         margin-bottom: 30px;
@@ -157,5 +168,13 @@ input:checked + label{
     }
     .tarjetas{ 
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 330px) {
+    #ver-mapa div {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
     }
 }
