@@ -22,7 +22,7 @@ const attacksContainer = document.getElementById('contenedor-ataques');
 const cardPlayerPetImage = document.getElementById('imagen-mascota-jugador');
 const cardEnemyPetImage = document.getElementById('imagen-mascota-enemigo');
 
-const sectionSeeMap = document.getElementById('ver-mapa');
+const seeMapSection = document.getElementById('ver-mapa');
 const map = document.getElementById('mapa');
 
 let mokepons = [];
@@ -111,26 +111,26 @@ let ratigueya = new Mokepon(
     './assets/cabeza-ratigueya.png'
 );
 
-let langostelvis = new Mokepon(
-    'Langostelvis',
-    './assets/mokepon-langostelvis.png',
-    5,
-    './assets/cabeza-langostelvis.png'
-);
+// let langostelvis = new Mokepon(
+//     'Langostelvis',
+//     './assets/mokepon-langostelvis.png',
+//     5,
+//     './assets/cabeza-langostelvis.png'
+// );
 
-let pydos = new Mokepon(
-    'Pydos',
-    './assets/mokepon-pydos.png',
-    5,
-    './assets/cabeza-pydos.png'
-);
+// let pydos = new Mokepon(
+//     'Pydos',
+//     './assets/mokepon-pydos.png',
+//     5,
+//     './assets/cabeza-pydos.png'
+// );
 
-let tucapalma = new Mokepon(
-    'Tucapalma',
-    './assets/mokepon-tucapalma.png',
-    4,
-    './assets/cabeza-tucapalma.png'
-);
+// let tucapalma = new Mokepon(
+//     'Tucapalma',
+//     './assets/mokepon-tucapalma.png',
+//     4,
+//     './assets/cabeza-tucapalma.png'
+// );
 
 //* Enemies
 let enemyHipodoge = new Mokepon(
@@ -184,6 +184,32 @@ ratigueya.attacks.push(
     { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' }
 );
 
+// Enemy attacks
+
+enemyHipodoge.attacks.push(
+    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
+    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
+    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
+    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
+    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' }
+);
+
+enemyCapipepo.attacks.push(
+    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
+    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
+    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
+    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
+    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' }
+);
+
+enemyRatigueya.attacks.push(
+    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
+    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
+    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
+    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
+    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' }
+);
+
 // langostelvis.attacks.push(
 //     { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
 //     { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
@@ -208,11 +234,11 @@ ratigueya.attacks.push(
 //     { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' }
 // );
 
-mokepons.push(hipodoge, capipepo, ratigueya, langostelvis, pydos, tucapalma);
+mokepons.push(hipodoge, capipepo, ratigueya);//, langostelvis, pydos, tucapalma);
 
 function beginGame() {
     selectAttackSection.style.display = 'none';
-    sectionSeeMap.style.display = 'none';
+    seeMapSection.style.display = 'none';
     resetSection.style.display = 'none';
 
     mokepons.forEach((mokepon) => {
@@ -268,9 +294,7 @@ function selectPlayerPet() {
     }
 
     extractAttacks(playerPet);
-    selectEnemyPet();
-    // selectAttackSection.style.display = 'flex';
-    sectionSeeMap.style.display = 'flex';
+    seeMapSection.style.display = 'flex';
     initiateMap();
 }
 
@@ -340,11 +364,9 @@ function showMokeponsImage(playerPet, enemyPet) {
     cardEnemyPetImage.innerHTML += enemyPetImage;
 }
 
-function selectEnemyPet() {
-    let randomPet = random(0, mokepons.length - 1);
-
-    spanEnemyPet.innerHTML = mokepons[randomPet].name;
-    enemyMokeponAttacks = mokepons[randomPet].attacks;
+function selectEnemyPet(enemy) {
+    spanEnemyPet.innerHTML = enemy.name;
+    enemyMokeponAttacks = enemy.attacks;
     showMokeponsImage(playerPet, spanEnemyPet.textContent);
     attackSequence();
 }
@@ -477,7 +499,10 @@ function checkCollision(enemy) {
     }
 
     stopMovement()
-    alert('Holi' + enemy.name)
+    clearInterval(interval)
+    selectAttackSection.style.display = 'flex'
+    seeMapSection.style.display = 'none'
+    selectEnemyPet(enemy);
 }
 
 function drawCanvas() {
@@ -494,7 +519,6 @@ function drawCanvas() {
         checkCollision(enemyHipodoge)
         checkCollision(enemyCapipepo)
         checkCollision(enemyRatigueya)
-
     }
 }
 
