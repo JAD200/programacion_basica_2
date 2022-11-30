@@ -122,26 +122,26 @@ let ratigueya = new Mokepon(
     './assets/cabeza-ratigueya.png'
 );
 
-// let langostelvis = new Mokepon(
-//     'Langostelvis',
-//     './assets/mokepon-langostelvis.png',
-//     5,
-//     './assets/cabeza-langostelvis.png'
-// );
+let langostelvis = new Mokepon(
+    'Langostelvis',
+    './assets/mokepon-langostelvis.png',
+    5,
+    './assets/cabeza-langostelvis.png'
+);
 
-// let pydos = new Mokepon(
-//     'Pydos',
-//     './assets/mokepon-pydos.png',
-//     5,
-//     './assets/cabeza-pydos.png'
-// );
+let pydos = new Mokepon(
+    'Pydos',
+    './assets/mokepon-pydos.png',
+    5,
+    './assets/cabeza-pydos.png'
+);
 
-// let tucapalma = new Mokepon(
-//     'Tucapalma',
-//     './assets/mokepon-tucapalma.png',
-//     4,
-//     './assets/cabeza-tucapalma.png'
-// );
+let tucapalma = new Mokepon(
+    'Tucapalma',
+    './assets/mokepon-tucapalma.png',
+    4,
+    './assets/cabeza-tucapalma.png'
+);
 
 //* Enemies
 let enemyHipodoge = new Mokepon(
@@ -163,6 +163,27 @@ let enemyRatigueya = new Mokepon(
     './assets/mokepon-ratigueya.png',
     4,
     './assets/cabeza-ratigueya.png'
+);
+
+let enemyLangostelvis = new Mokepon(
+    'Langostelvis',
+    './assets/mokepon-langostelvis.png',
+    5,
+    './assets/cabeza-langostelvis.png'
+);
+
+let enemyPydos = new Mokepon(
+    'Pydos',
+    './assets/mokepon-pydos.png',
+    5,
+    './assets/cabeza-pydos.png'
+);
+
+let enemyTucapalma = new Mokepon(
+    'Tucapalma',
+    './assets/mokepon-tucapalma.png',
+    4,
+    './assets/cabeza-tucapalma.png'
 );
 
 hipodoge.attacks.push(
@@ -187,6 +208,30 @@ ratigueya.attacks.push(
     { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
     { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
     { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' }
+);
+
+langostelvis.attacks.push(
+    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
+    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
+    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
+    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
+    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' }
+);
+
+pydos.attacks.push(
+    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
+    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
+    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
+    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
+    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' }
+);
+
+tucapalma.attacks.push(
+    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
+    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
+    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
+    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
+    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' }
 );
 
 // Enemy attacks
@@ -215,31 +260,31 @@ enemyRatigueya.attacks.push(
     { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' }
 );
 
-// langostelvis.attacks.push(
-//     { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
-//     { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
-//     { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
-//     { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
-//     { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' }
-// );
+enemyLangostelvis.attacks.push(
+    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
+    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
+    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
+    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
+    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' }
+);
 
-// pydos.attacks.push(
-//     { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
-//     { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
-//     { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
-//     { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
-//     { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' }
-// );
+enemyPydos.attacks.push(
+    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
+    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
+    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
+    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
+    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' }
+);
 
-// tucapalma.attacks.push(
-//     { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
-//     { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
-//     { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
-//     { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
-//     { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' }
-// );
+enemyTucapalma.attacks.push(
+    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
+    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
+    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
+    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
+    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' }
+);
 
-mokepons.push(hipodoge, capipepo, ratigueya); //, langostelvis, pydos, tucapalma);
+mokepons.push(hipodoge, capipepo, ratigueya, langostelvis, pydos, tucapalma);
 
 function beginGame() {
     selectAttackSection.style.display = 'none';
@@ -518,10 +563,16 @@ function drawCanvas() {
     enemyHipodoge.drawMokepon();
     enemyCapipepo.drawMokepon();
     enemyRatigueya.drawMokepon();
+    enemyLangostelvis.drawMokepon();
+    enemyPydos.drawMokepon();
+    enemyTucapalma.drawMokepon();
     if (playerPetObject.xVelocity !== 0 || playerPetObject.yVelocity !== 0) {
         checkCollision(enemyHipodoge);
         checkCollision(enemyCapipepo);
         checkCollision(enemyRatigueya);
+        checkCollision(enemyLangostelvis);
+        checkCollision(enemyPydos);
+        checkCollision(enemyTucapalma);
     }
 }
 
