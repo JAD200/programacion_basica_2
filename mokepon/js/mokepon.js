@@ -24,7 +24,7 @@ const cardEnemyPetImage = document.getElementById('imagen-mascota-enemigo');
 
 const seeMapSection = document.getElementById('ver-mapa');
 const map = document.getElementById('mapa');
-const maxMapWidth = 350;
+const maxMapWidth = 400;
 
 let mokepons = [];
 // Attacks
@@ -65,9 +65,9 @@ mapBackground.src = './assets/mokemapa.png';
 let searchedHeight;
 let mapWidth = window.innerWidth - 20;
 if (mapWidth > maxMapWidth) {
-    mapWidth == maxMapWidth - 20;
+    mapWidth = maxMapWidth - 20;
 }
-
+// searched height ==  inner width * height / width
 searchedHeight = (mapWidth * 600) / 800;
 
 map.width = mapWidth;
@@ -148,42 +148,42 @@ let enemyHipodoge = new Mokepon(
     'Hipodoge',
     './assets/mokepon-hipodoge.png',
     5,
-    './assets/cabeza-hipodoge.png'
+    './assets/cabeza-hipodoge-enemigo.png'
 );
 
 let enemyCapipepo = new Mokepon(
     'Capipepo',
     './assets/mokepon-capipepo.png',
     5,
-    './assets/cabeza-capipepo.png'
+    './assets/cabeza-capipepo-enemigo.png'
 );
 
 let enemyRatigueya = new Mokepon(
     'Ratigueya',
     './assets/mokepon-ratigueya.png',
     4,
-    './assets/cabeza-ratigueya.png'
+    './assets/cabeza-ratigueya-enemigo.png'
 );
 
 let enemyLangostelvis = new Mokepon(
     'Langostelvis',
     './assets/mokepon-langostelvis.png',
     5,
-    './assets/cabeza-langostelvis.png'
+    './assets/cabeza-langostelvis-enemigo.png'
 );
 
 let enemyPydos = new Mokepon(
     'Pydos',
     './assets/mokepon-pydos.png',
     5,
-    './assets/cabeza-pydos.png'
+    './assets/cabeza-pydos-enemigo.png'
 );
 
 let enemyTucapalma = new Mokepon(
     'Tucapalma',
     './assets/mokepon-tucapalma.png',
     4,
-    './assets/cabeza-tucapalma.png'
+    './assets/cabeza-tucapalma-enemigo.png'
 );
 
 hipodoge.attacks.push(
