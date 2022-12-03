@@ -14,7 +14,7 @@
 <div align="center">
   <a href="https://platzi.com" target="blank" referrerpolicy="no-referrer">
     <img src="https://bit.ly/3umJ0IW" alt="Platzi logo" width="300" >
-    <img src="https://i.imgur.com/Z4hyMBH.png" alt="Platzi logo" width="300" >
+    <img src="https://i.imgur.com/cKpNHU5.png" alt="HTML, CSS, JavaScript" width="300" >
   </a>
 
 <h3 align="center">New Basic Programming Course</h3>
@@ -40,10 +40,11 @@
 
 
 ### Built With
-
-* [HTML](https://developer.mozilla.org/es/docs/Web/HTML)
-* [CSS](https://developer.mozilla.org/es/docs/Web/CSS)
-* [JavaScript](https://developer.mozilla.org/es/docs/Web/JavaScript)
+* [Frontend](https://es.wikipedia.org/wiki/Front_end_y_back_end)
+  * [HTML](https://developer.mozilla.org/es/docs/Web/HTML)
+  * [CSS](https://developer.mozilla.org/es/docs/Web/CSS)
+  * [JavaScript](https://developer.mozilla.org/es/docs/Web/JavaScript)
+* [Backend](https://es.wikipedia.org/wiki/Front_end_y_back_end)
   * [NodeJs](https://nodejs.org/es/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
