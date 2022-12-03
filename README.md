@@ -12,8 +12,9 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/JAD200/programacion_basica_2" target="blank" referrerpolicy="no-referrer">
-    <img src="https://i.imgur.com/fDkhooA.png" alt="Python logo" width="300" >
+  <a href="https://platzi.com" target="blank" referrerpolicy="no-referrer">
+    <img src="https://bit.ly/3umJ0IW" alt="Platzi logo" width="300" >
+    <img src="https://i.imgur.com/Z4hyMBH.png" alt="Platzi logo" width="300" >
   </a>
 
 <h3 align="center">New Basic Programming Course</h3>
