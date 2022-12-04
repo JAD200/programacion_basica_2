@@ -1,0 +1,19 @@
+{
+  "name": "mokepon",
+  "version": "1.0.0",
+  "description": "Basic game with creature selection, a map to explore and combats with other creatures.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JAD200/programacion_basica_2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JAD200/programacion_basica_2/issues"
+  },
+  "homepage": "https://github.com/JAD200/programacion_basica_2#readme"
+}
