@@ -315,6 +315,20 @@ function beginGame() {
     playerMascotButton.addEventListener('click', selectPlayerPet);
 
     resetGameButton.addEventListener('click', resetGame);
+
+    joinTheGame()
+}
+
+function joinTheGame() {
+    fetch('http://localhost:8080/unirse')
+        .then((res) => {
+            if (res.ok) {
+                res.text()
+                    .then((response) => {
+                        console.log(response)
+                    })
+            }
+        })
 }
 
 function selectPlayerPet() {
