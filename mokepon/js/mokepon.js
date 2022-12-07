@@ -588,6 +588,9 @@ function drawCanvas() {
     painting.drawImage(mapBackground, 0, 0, map.width, map.height);
 
     playerPetObject.drawMokepon();
+
+    sendPosition(playerPetObject.x, playerPetObject.y);
+
     enemyHipodoge.drawMokepon();
     enemyCapipepo.drawMokepon();
     enemyRatigueya.drawMokepon();
@@ -602,6 +605,19 @@ function drawCanvas() {
         checkCollision(enemyPydos);
         checkCollision(enemyTucapalma);
     }
+}
+
+function sendPosition(x, y) {
+    fetch(`http://localhost:8080/mokepon/${playerId}/position`, {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            x,
+            y
+        }),
+    });
 }
 
 function moveUp() {
