@@ -26,6 +26,8 @@ const seeMapSection = document.getElementById('ver-mapa');
 const map = document.getElementById('mapa');
 const maxMapWidth = 400;
 
+let playerId = null;
+
 let mokepons = [];
 // Attacks
 let playerAttack = [];
@@ -316,19 +318,29 @@ function beginGame() {
 
     resetGameButton.addEventListener('click', resetGame);
 
-    joinTheGame()
+    joinTheGame();
 }
 
 function joinTheGame() {
-    fetch('http://localhost:8080/unirse')
-        .then((res) => {
-            if (res.ok) {
-                res.text()
-                    .then((response) => {
-                        console.log(response)
-                    })
-            }
-        })
+    fetch('http://localhost:8080/unirse').then((res) => {
+        if (res.ok) {
+            res.text().then((response) => {
+                playerId = response;
+            });
+        }
+    });
+}
+
+function selectMokepon(playerPet) {
+    fetch(`http://localhost:8080/mokepon/${playerId}`, {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            mokepon: playerPet,
+        }),
+    });
 }
 
 function selectPlayerPet() {
@@ -356,6 +368,8 @@ function selectPlayerPet() {
         alert('Selecciona una mascota, por favor');
         return (selectPetSection.style.display = 'flex');
     }
+
+    selectMokepon(playerPet);
 
     extractAttacks(playerPet);
     seeMapSection.style.display = 'flex';
