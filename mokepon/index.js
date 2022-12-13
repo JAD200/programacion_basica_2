@@ -67,7 +67,11 @@ app.post('/mokepon/:playerId/position', (req, res) => {
         players[playerIndex].updatePosition(x, y);
     }
 
-    res.end()
+    const enemies = players.filter((player) => playerId !== player.id)
+
+    res.send({
+        enemies
+    })
 });
 
 app.listen(8080, () => {

@@ -1,32 +1,34 @@
 // HTML elements
 const selectAttackSection = document.getElementById('seleccionar-ataque');
-
+// Reset
 const resetSection = document.getElementById('reiniciar');
-
+// Buttons
 const playerMascotButton = document.getElementById('boton-mascota');
 const resetGameButton = document.getElementById('boton-reset');
-
+// Pet selection and span
 const selectPetSection = document.getElementById('seleccionar-mascota');
 const spanPlayerPet = document.getElementById('mascota-jugador');
 const spanEnemyPet = document.getElementById('mascota-enemiga');
-
+// Combat lives
 const spanPlayerLives = document.getElementById('vidas-jugador');
 const spanEnemyLives = document.getElementById('vidas-enemigo');
-
+// Combat
 const messagesSection = document.getElementById('resultado');
 const playerAttackMessage = document.getElementById('ataques-del-jugador');
 const enemyAttackMessage = document.getElementById('ataques-del-enemigo');
 const cardsContainer = document.getElementById('contenedor-tarjetas');
 const attacksContainer = document.getElementById('contenedor-ataques');
-
+// Images
 const cardPlayerPetImage = document.getElementById('imagen-mascota-jugador');
 const cardEnemyPetImage = document.getElementById('imagen-mascota-enemigo');
-
+// Canvas
 const seeMapSection = document.getElementById('ver-mapa');
 const map = document.getElementById('mapa');
 const maxMapWidth = 400;
 
+// Backend
 let playerId = null;
+let enemiesMokepons = [];
 
 let mokepons = [];
 // Attacks
@@ -77,7 +79,7 @@ map.height = searchedHeight;
 
 // Mokepons
 class Mokepon {
-    constructor(name, picture, life, mapPicture) {
+    constructor(name, picture, life, mapPicture, id = null) {
         this.name = name;
         this.picture = picture;
         this.life = life;
@@ -90,6 +92,7 @@ class Mokepon {
         this.pictureMap.src = mapPicture;
         this.xVelocity = 0;
         this.yVelocity = 0;
+        this.id = id;
     }
 
     drawMokepon() {
@@ -145,146 +148,69 @@ let tucapalma = new Mokepon(
     './assets/cabeza-tucapalma.png'
 );
 
-//* Enemies
-let enemyHipodoge = new Mokepon(
-    'Hipodoge',
-    './assets/mokepon-hipodoge.png',
-    5,
-    './assets/cabeza-hipodoge-enemigo.png'
-);
+//* Attacks lists
 
-let enemyCapipepo = new Mokepon(
-    'Capipepo',
-    './assets/mokepon-capipepo.png',
-    5,
-    './assets/cabeza-capipepo-enemigo.png'
-);
-
-let enemyRatigueya = new Mokepon(
-    'Ratigueya',
-    './assets/mokepon-ratigueya.png',
-    4,
-    './assets/cabeza-ratigueya-enemigo.png'
-);
-
-let enemyLangostelvis = new Mokepon(
-    'Langostelvis',
-    './assets/mokepon-langostelvis.png',
-    5,
-    './assets/cabeza-langostelvis-enemigo.png'
-);
-
-let enemyPydos = new Mokepon(
-    'Pydos',
-    './assets/mokepon-pydos.png',
-    5,
-    './assets/cabeza-pydos-enemigo.png'
-);
-
-let enemyTucapalma = new Mokepon(
-    'Tucapalma',
-    './assets/mokepon-tucapalma.png',
-    4,
-    './assets/cabeza-tucapalma-enemigo.png'
-);
-
-hipodoge.attacks.push(
+const HIPODOGE_ATTACKS = [
     { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
     { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
     { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
     { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
-    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' }
-);
+    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
+];
 
-capipepo.attacks.push(
+const CAPIPEPO_ATTACKS = [
     { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
     { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
     { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
     { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
-    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' }
-);
+    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
+];
 
-ratigueya.attacks.push(
+const RATIGUEYA_ATTACKS = [
     { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
     { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
     { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
     { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
-    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' }
-);
+    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
+];
 
-langostelvis.attacks.push(
+const LANGOSTELVIS_ATTACKS = [
     { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
     { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
     { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
     { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
-    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' }
-);
+    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
+];
 
-pydos.attacks.push(
+const PYDOS_ATTACKS = [
     { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
     { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
     { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
     { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
-    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' }
-);
+    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
+];
 
-tucapalma.attacks.push(
+const TUCAPALMA_ATTACKS = [
     { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
     { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
     { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
     { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
-    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' }
-);
+    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
+];
 
-// Enemy attacks
+// Player attacks
 
-enemyHipodoge.attacks.push(
-    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
-    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
-    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
-    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
-    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' }
-);
+hipodoge.attacks.push(...HIPODOGE_ATTACKS);
 
-enemyCapipepo.attacks.push(
-    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
-    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
-    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
-    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
-    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' }
-);
+capipepo.attacks.push(...CAPIPEPO_ATTACKS);
 
-enemyRatigueya.attacks.push(
-    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
-    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
-    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
-    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
-    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' }
-);
+ratigueya.attacks.push(...RATIGUEYA_ATTACKS);
 
-enemyLangostelvis.attacks.push(
-    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
-    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
-    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
-    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
-    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' }
-);
+langostelvis.attacks.push(...LANGOSTELVIS_ATTACKS);
 
-enemyPydos.attacks.push(
-    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
-    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
-    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' },
-    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
-    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' }
-);
+pydos.attacks.push(...PYDOS_ATTACKS);
 
-enemyTucapalma.attacks.push(
-    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
-    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
-    { attackName: '🔥', pushName: 'FUEGO', id: 'boton-fuego' },
-    { attackName: '💧', pushName: 'AGUA', id: 'boton-agua' },
-    { attackName: '🌱', pushName: 'TIERRA', id: 'boton-tierra' }
-);
+tucapalma.attacks.push(...TUCAPALMA_ATTACKS);
 
 mokepons.push(hipodoge, capipepo, ratigueya, langostelvis, pydos, tucapalma);
 
@@ -332,6 +258,10 @@ function joinTheGame() {
 }
 
 function selectMokepon(playerPet) {
+    /* "fetch" with "post". The URL is called when the service "index.js" /mokepon/ playerId is inserted. To created it we use the syntax "template string". 
+    This syntax begins with `` inverted quote, using "$" along with "{}" we can use a variable. 
+    With this the URL has been unified with the playerID 
+    //* A second parameter is added to the function, in which a configuration JSON is added with the method "method"*/
     fetch(`http://localhost:8080/mokepon/${playerId}`, {
         method: 'post',
         headers: {
@@ -591,20 +521,10 @@ function drawCanvas() {
 
     sendPosition(playerPetObject.x, playerPetObject.y);
 
-    enemyHipodoge.drawMokepon();
-    enemyCapipepo.drawMokepon();
-    enemyRatigueya.drawMokepon();
-    enemyLangostelvis.drawMokepon();
-    enemyPydos.drawMokepon();
-    enemyTucapalma.drawMokepon();
-    if (playerPetObject.xVelocity !== 0 || playerPetObject.yVelocity !== 0) {
-        checkCollision(enemyHipodoge);
-        checkCollision(enemyCapipepo);
-        checkCollision(enemyRatigueya);
-        checkCollision(enemyLangostelvis);
-        checkCollision(enemyPydos);
-        checkCollision(enemyTucapalma);
-    }
+    enemiesMokepons.forEach(function (listItem) {
+        listItem.drawMokepon();
+        checkCollision(listItem);
+    });
 }
 
 function sendPosition(x, y) {
@@ -615,8 +535,75 @@ function sendPosition(x, y) {
         },
         body: JSON.stringify({
             x,
-            y
+            y,
         }),
+    }).then(function (res) {
+        if (res.ok) {
+            res.json().then(function ({ enemies }) {
+                //* Enemies
+                console.log(enemies);
+                /*To remove the flicker of the images of the characters (other players), which is caused by the response time of the server, 
+                an auxiliary variable is used which will have the coordinates, 
+                thus drawing what is on the frontend and not being necessary to wait for a backend response.
+
+                //* The 'enemies' list will no longer be used directly, but the auxiliary one 'enemiesMokepons'. The last one must be created globally.
+
+                //* 'Map' will replace 'ForEach' since is very similar but returns a value generating a new list with the same number of elements as the original */
+                enemiesMokepons = enemies.map(function (enemy) {
+                    if (enemy.mokepon != undefined) {
+                        let enemyMokepon = null;
+                        const mokeponName = enemy.mokepon.name || '';
+                        if (mokeponName === 'Hipodoge') {
+                            enemyMokepon = new Mokepon(
+                                'Hipodoge',
+                                './assets/mokepon-hipodoge.png',
+                                5,
+                                './assets/cabeza-hipodoge-enemigo.png'
+                            );
+                        } else if (mokeponName === 'Capipepo') {
+                            enemyMokepon = new Mokepon(
+                                'Capipepo',
+                                './assets/mokepon-capipepo.png',
+                                5,
+                                './assets/cabeza-capipepo-enemigo.png'
+                            );
+                        } else if (mokeponName === 'Ratigueya') {
+                            enemyMokepon = new Mokepon(
+                                'Ratigueya',
+                                './assets/mokepon-ratigueya.png',
+                                4,
+                                './assets/cabeza-ratigueya-enemigo.png'
+                            );
+                        } else if (mokeponName === 'Langostelvis') {
+                            enemyMokepon = new Mokepon(
+                                'Langostelvis',
+                                './assets/mokepon-langostelvis.png',
+                                5,
+                                './assets/cabeza-langostelvis-enemigo.png'
+                            );
+                        } else if (mokeponName === 'Pydos') {
+                            enemyMokepon = new Mokepon(
+                                'Pydos',
+                                './assets/mokepon-pydos.png',
+                                5,
+                                './assets/cabeza-pydos-enemigo.png'
+                            );
+                        } else if (mokeponName === 'Tucapalma') {
+                            enemyMokepon = new Mokepon(
+                                'Tucapalma',
+                                './assets/mokepon-tucapalma.png',
+                                4,
+                                './assets/cabeza-tucapalma-enemigo.png'
+                            );
+                        }
+                        enemyMokepon.x = enemy.x || 0;
+                        enemyMokepon.y = enemy.y || 0;
+
+                        return enemyMokepon;
+                    }
+                });
+            });
+        }
     });
 }
 
