@@ -28,6 +28,7 @@ const maxMapWidth = 400;
 
 // Backend
 let playerId = null;
+let enemyId = null;
 let enemiesMokepons = [];
 
 let mokepons = [];
@@ -349,8 +350,39 @@ function attackSequence() {
                 button.style.background = '#5717cf';
                 button.disabled = true;
             }
-            selectEnemyAttack();
+            if (playerAttack.length === 5) {
+                sendAttacks();
+            }
         });
+    });
+}
+
+function sendAttacks() {
+    fetch(`http://localhost:8080/mokepon/${playerId}/attacks`, {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            attacks: playerAttack,
+        }),
+    });
+    interval = setInterval(obtainAttacks, 50);
+}
+
+function obtainAttacks() {
+    fetch(`http://localhost:8080/mokepon/${enemyId}/attacks`).then(function (
+        res
+    ) {
+        if (res.ok) {
+            res.json().then(function ({ attacks }) {
+                console.log('Ataque enviado: ', attacks);
+                if (attacks.length === 5) {
+                    enemyAttack = attacks;
+                    combat();
+                }
+            });
+        }
     });
 }
 
@@ -400,6 +432,8 @@ function indexBothOpponents(player, enemy) {
 }
 
 function combat() {
+    clearInterval(interval);
+
     for (let i = 0; i < playerAttack.length; i++) {
         if (playerAttack[i] === enemyAttack[i]) {
             indexBothOpponents(i, i);
@@ -506,6 +540,8 @@ function checkCollision(enemy) {
 
     stopMovement();
     clearInterval(interval);
+
+    enemyId = enemy.id;
     selectAttackSection.style.display = 'flex';
     seeMapSection.style.display = 'none';
     selectEnemyPet(enemy);
@@ -522,8 +558,10 @@ function drawCanvas() {
     sendPosition(playerPetObject.x, playerPetObject.y);
 
     enemiesMokepons.forEach(function (listItem) {
-        listItem.drawMokepon();
-        checkCollision(listItem);
+        if (listItem != undefined) {
+            listItem.drawMokepon();
+            checkCollision(listItem);
+        }
     });
 }
 
@@ -558,42 +596,48 @@ function sendPosition(x, y) {
                                 'Hipodoge',
                                 './assets/mokepon-hipodoge.png',
                                 5,
-                                './assets/cabeza-hipodoge-enemigo.png'
+                                './assets/cabeza-hipodoge-enemigo.png',
+                                enemy.id
                             );
                         } else if (mokeponName === 'Capipepo') {
                             enemyMokepon = new Mokepon(
                                 'Capipepo',
                                 './assets/mokepon-capipepo.png',
                                 5,
-                                './assets/cabeza-capipepo-enemigo.png'
+                                './assets/cabeza-capipepo-enemigo.png',
+                                enemy.id
                             );
                         } else if (mokeponName === 'Ratigueya') {
                             enemyMokepon = new Mokepon(
                                 'Ratigueya',
                                 './assets/mokepon-ratigueya.png',
                                 4,
-                                './assets/cabeza-ratigueya-enemigo.png'
+                                './assets/cabeza-ratigueya-enemigo.png',
+                                enemy.id
                             );
                         } else if (mokeponName === 'Langostelvis') {
                             enemyMokepon = new Mokepon(
                                 'Langostelvis',
                                 './assets/mokepon-langostelvis.png',
                                 5,
-                                './assets/cabeza-langostelvis-enemigo.png'
+                                './assets/cabeza-langostelvis-enemigo.png',
+                                enemy.id
                             );
                         } else if (mokeponName === 'Pydos') {
                             enemyMokepon = new Mokepon(
                                 'Pydos',
                                 './assets/mokepon-pydos.png',
                                 5,
-                                './assets/cabeza-pydos-enemigo.png'
+                                './assets/cabeza-pydos-enemigo.png',
+                                enemy.id
                             );
                         } else if (mokeponName === 'Tucapalma') {
                             enemyMokepon = new Mokepon(
                                 'Tucapalma',
                                 './assets/mokepon-tucapalma.png',
                                 4,
-                                './assets/cabeza-tucapalma-enemigo.png'
+                                './assets/cabeza-tucapalma-enemigo.png',
+                                enemy.id
                             );
                         }
                         enemyMokepon.x = enemy.x || 0;
