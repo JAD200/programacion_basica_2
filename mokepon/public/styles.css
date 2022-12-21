@@ -84,6 +84,7 @@ input:checked + label{
     gap: 10px;
     color: #1b1c1e;
     font-family: 'Fragment Mono', monospace;
+    user-select: none;
 }
 
 .logica-ataques {
