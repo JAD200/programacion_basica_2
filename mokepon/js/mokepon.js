@@ -275,8 +275,6 @@ function selectMokepon(playerPet) {
 }
 
 function selectPlayerPet() {
-    selectPetSection.style.display = 'none';
-
     if (inputHipodoge.checked) {
         spanPlayerPet.innerHTML = inputHipodoge.id;
         playerPet = inputHipodoge.id;
@@ -297,8 +295,10 @@ function selectPlayerPet() {
         playerPet = inputTucapalma.id;
     } else {
         alert('Selecciona una mascota, por favor');
-        return (selectPetSection.style.display = 'flex');
+        return
     }
+
+    selectPetSection.style.display = 'none';
 
     selectMokepon(playerPet);
 
