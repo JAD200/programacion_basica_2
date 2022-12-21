@@ -69,7 +69,7 @@ input {
 
 input:checked + label{
     background-color: #FFE9B1;
-    color: #000;
+    color: #1b1c1e;
 }
 
 #seleccionar-ataque {
@@ -82,6 +82,7 @@ input:checked + label{
     display: flex;
     justify-content: center;
     gap: 10px;
+    color: #1b1c1e;
     font-family: 'Fragment Mono', monospace;
 }
 
