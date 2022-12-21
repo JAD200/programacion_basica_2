@@ -27,6 +27,7 @@ const map = document.getElementById('mapa');
 const maxMapWidth = 400;
 
 // Backend
+const gamePort = '192.168.0.107';
 let playerId = null;
 let enemyId = null;
 let enemiesMokepons = [];
@@ -249,7 +250,7 @@ function beginGame() {
 }
 
 function joinTheGame() {
-    fetch('http://localhost:8080/unirse').then((res) => {
+    fetch(`http://${gamePort}:8080/unirse`).then((res) => {
         if (res.ok) {
             res.text().then((response) => {
                 playerId = response;
@@ -263,7 +264,7 @@ function selectMokepon(playerPet) {
     This syntax begins with `` inverted quote, using "$" along with "{}" we can use a variable. 
     With this the URL has been unified with the playerID 
     //* A second parameter is added to the function, in which a configuration JSON is added with the method "method"*/
-    fetch(`http://localhost:8080/mokepon/${playerId}`, {
+    fetch(`http://${gamePort}:8080/mokepon/${playerId}`, {
         method: 'post',
         headers: {
             'Content-Type': 'application/json',
@@ -358,7 +359,7 @@ function attackSequence() {
 }
 
 function sendAttacks() {
-    fetch(`http://localhost:8080/mokepon/${playerId}/attacks`, {
+    fetch(`http://${gamePort}:8080/mokepon/${playerId}/attacks`, {
         method: 'post',
         headers: {
             'Content-Type': 'application/json',
@@ -371,7 +372,7 @@ function sendAttacks() {
 }
 
 function obtainAttacks() {
-    fetch(`http://localhost:8080/mokepon/${enemyId}/attacks`).then(function (
+    fetch(`http://${gamePort}:8080/mokepon/${enemyId}/attacks`).then(function (
         res
     ) {
         if (res.ok) {
@@ -566,7 +567,7 @@ function drawCanvas() {
 }
 
 function sendPosition(x, y) {
-    fetch(`http://localhost:8080/mokepon/${playerId}/position`, {
+    fetch(`http://${gamePort}:8080/mokepon/${playerId}/position`, {
         method: 'post',
         headers: {
             'Content-Type': 'application/json',
