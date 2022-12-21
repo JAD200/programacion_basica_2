@@ -3,6 +3,7 @@ const cors = require('cors');
 
 const app = express();
 
+app.use(express.static('public'));
 app.use(cors());
 
 app.use(express.json());
@@ -79,24 +80,24 @@ app.post('/mokepon/:playerId/position', (req, res) => {
 });
 
 app.post('/mokepon/:playerId/attacks', (req, res) => {
-    const playerId = req.params.playerId || ''
-    const attacks = req.body.attacks || []
+    const playerId = req.params.playerId || '';
+    const attacks = req.body.attacks || [];
 
-    const playerIndex = players.findIndex((player) => playerId === player.id)
+    const playerIndex = players.findIndex((player) => playerId === player.id);
 
     if (playerIndex >= 0) {
-    players[playerIndex].assignAttacks(attacks)
+        players[playerIndex].assignAttacks(attacks);
     }
 
     res.end();
 });
 
 app.get('/mokepon/:playerId/attacks', (req, res) => {
-    const playerId = req.params.playerId || ''
+    const playerId = req.params.playerId || '';
 
     const player = players.find((player) => player.id === playerId);
     res.send({
-        attacks: player.attacks || []
+        attacks: player.attacks || [],
     });
 });
 
